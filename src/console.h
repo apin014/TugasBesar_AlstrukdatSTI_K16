@@ -5,15 +5,11 @@
 #include"ADT/mesin_kar.h"
 #include"ADT/mesin_kata.h"
 #include"ADT/array.h"
+#include"ADT/arrayChar.h"
 
-void readConfig(const char *filepath, int *mapSize, char *map, int *maxRoll, int *TeleporterCount, TabInt *TeleportIn, TabInt *TeleportOut);
+void readConfig(const char *filepath, TabChar *map, int *maxRoll, int *TeleporterCount, TabInt *TeleportIn, TabInt *TeleportOut);
 /*
 Membaca file konfigurasi dengan format .txt untuk digunakan dalam setup game Mobitangga
-*/
-
-void KataToString (Kata K, char *S);
-/*
-Konversi kata menjadi string
 */
 
 #endif

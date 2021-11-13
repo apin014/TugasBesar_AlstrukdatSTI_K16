@@ -13,7 +13,7 @@
 
 typedef struct {
   char TabKata[NMax+1];
-   int Length;
+  int Length;
 } Kata;
 
 /* State Mesin Kata */

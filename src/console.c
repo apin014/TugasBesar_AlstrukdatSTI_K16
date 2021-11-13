@@ -1,17 +1,19 @@
 #include"console.h"
 #include<stdlib.h>
 #include<stdio.h>
+#include"math.h"
 
 Kata CKata;
 boolean EndKata;
 
-void readConfig (const char *filepath, int *mapSize, char *map, int *maxRoll, int *TeleporterCount, TabInt *TeleportIn, TabInt *TeleportOut) {
+void readConfig (const char *filepath, TabChar *map, int *maxRoll, int *TeleporterCount, TabInt *TeleportIn, TabInt *TeleportOut) {
     STARTKATAFILE(filepath);
-    char strMapSize[CKata.Length];
-    KataToString(CKata, strMapSize);
-    sscanf(strMapSize, "%d", mapSize);
     ADVKATA();
-    KataToString(CKata, map);
+    SetNeffChar(map, CKata.Length);
+    for (int i = 1; i <= CKata.Length; i++)
+    {
+        SetElChar(map, i, CKata.TabKata[i]);
+    }
     ADVKATA();
     char strMaxRoll[CKata.Length];
     KataToString(CKata, strMaxRoll);
@@ -29,6 +31,21 @@ void readConfig (const char *filepath, int *mapSize, char *map, int *maxRoll, in
         KataToString(CKata, strEl);
         int El;
         sscanf(strEl, "%d", &El);
+        if (El >= 10) {
+            if (El >= 100) {
+                if (CKata.Length < 3) {
+                    if (CKata.Length == 2) {
+                        El /= 10;
+                    } else {
+                        El /= 100;
+                    }
+                }   
+            } else {
+                if (CKata.Length < 2) {
+                    El /= 10;
+                }
+            }
+        }
         if (i % 2 != 0) {
             SetEl(TeleportIn, (i+1)/2, El);
         } else {
