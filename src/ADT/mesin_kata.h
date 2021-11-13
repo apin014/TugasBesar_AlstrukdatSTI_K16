@@ -24,9 +24,12 @@ void IgnoreBlank();
 
 void SalinKata();
           
-void STARTKATA(const char *filename);
+void STARTKATA();
 
 void ADVKATA();
 
+void STARTKATAFILE(const char *filename);
+
+void KataToString (Kata K, char *S);
 
 #endif

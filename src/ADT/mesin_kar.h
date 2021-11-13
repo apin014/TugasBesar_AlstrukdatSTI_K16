@@ -11,9 +11,13 @@
 extern char CC;
 extern boolean EOP;
 
-void START(const char *filename);
+void START();
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
    Mengambil parameter nama file yang hendak dibaca */
+
+void STARTFILE(const char *filename);
+/* Mesin membaca dari sebuah file
+   alih-alih dari masukan keyboard */
 
 void ADV();
 /* Pita dimajukan satu karakter */

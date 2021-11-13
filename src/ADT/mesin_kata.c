@@ -22,8 +22,19 @@ void SalinKata () {
     CKata.Length = i - 1;
 }
 
-void STARTKATA (const char *filename) {
-    START(filename);
+void STARTKATA () {
+    START();
+    IgnoreBlank();
+    if (CC == MARK) {
+        EndKata = true;
+    } else {
+        EndKata = false;
+        SalinKata();
+    }
+}
+
+void STARTKATAFILE (const char *filename) {
+    STARTFILE(filename);
     IgnoreBlank();
     if (CC == MARK) {
         EndKata = true;
@@ -39,5 +50,12 @@ void ADVKATA () {
         EndKata = true;
     } else {
         SalinKata();
+    }
+}
+
+void KataToString (Kata K, char *S) {
+    for (int i = 1; i <= K.Length; i++)
+    {
+        S[i-1] = K.TabKata[i];
     }
 }

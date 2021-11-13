@@ -11,14 +11,16 @@ boolean EOP;
 static FILE * pita;
 static int retval;
 
-void START(const char* filename) {
+void START() {
+    pita = stdin;
+    ADV();
+}
+
+void STARTFILE (const char *filename) {
     pita = fopen(filename, "r");
-    if (pita == NULL) {
-        printf("X");
-    } else {
+    if (pita != NULL) {
         ADV();
     }
-    
 }
 
 void ADV() {

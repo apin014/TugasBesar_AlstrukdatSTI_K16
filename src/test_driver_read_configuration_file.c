@@ -11,7 +11,8 @@ int main () {
     TabInt TIn, TOut;
     MakeEmpty(&TIn); MakeEmpty(&TOut);
     printf("Masukkan path file konfigurasi: ");
-    scanf("%s", &filepath);
+    STARTKATA();
+    KataToString(CKata, filepath);
     readConfig(filepath, &mapSize, map, &maxroll, &TeleporterCount, &TIn, &TOut);
     printf("Mapsize: %d\n", mapSize);
     printf("Map: \n");
@@ -36,9 +37,9 @@ int main () {
         printf(" %d ", GetElmt(TOut, i));
     }
     printf("]\n");
-    printf("Insert ANY CHARACTER to continue\n");
+    printf("Insert (y/Y) to continue\n");
     char c = getchar();
-    while (c == 10)
+    while (c != 89 && c != 121)
     {
         c = getchar();
     }

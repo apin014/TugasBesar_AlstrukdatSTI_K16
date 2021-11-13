@@ -2,8 +2,11 @@
 #include<stdlib.h>
 #include<stdio.h>
 
+Kata CKata;
+boolean EndKata;
+
 void readConfig (const char *filepath, int *mapSize, char *map, int *maxRoll, int *TeleporterCount, TabInt *TeleportIn, TabInt *TeleportOut) {
-    STARTKATA(filepath);
+    STARTKATAFILE(filepath);
     char strMapSize[CKata.Length];
     KataToString(CKata, strMapSize);
     sscanf(strMapSize, "%d", mapSize);
@@ -33,12 +36,5 @@ void readConfig (const char *filepath, int *mapSize, char *map, int *maxRoll, in
         }
         free(strEl);
         i++;
-    }
-}
-
-void KataToString (Kata K, char *S) {
-    for (int i = 1; i <= K.Length; i++)
-    {
-        S[i-1] = K.TabKata[i];
     }
 }
