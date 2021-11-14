@@ -6,7 +6,7 @@
 
 #include "boolean.h"
 
-#define MARK '/'
+#define MARK ';'
 /* State Mesin */
 extern char CC;
 extern boolean EOP;
@@ -16,8 +16,7 @@ void START();
    Mengambil parameter nama file yang hendak dibaca */
 
 void STARTFILE(const char *filename);
-/* Mesin membaca dari sebuah file
-   alih-alih dari masukan keyboard */
+/* Mesin membaca dari sebuah file */
 
 void ADV();
 /* Pita dimajukan satu karakter */
