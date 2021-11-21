@@ -240,3 +240,41 @@ void InversList (List *L) {
     }
     *L = L1;
 }
+
+void PrintRandomSkill(int number)
+{
+    srand(time(NULL));
+    number = (rand() % 100) + 1;
+    if (number >= 1 && number <= 10)
+    {
+        printf("Pintu Ga Ke Mana Mana\n");
+    }
+    else if (number >= 11 && number <= 20)
+    {
+        printf("Mesin Waktu\n");
+    }
+    else if (number >= 21 && number <= 30)
+    {
+        printf("Baling Baling Jambu\n");
+    }
+    else if (number >= 31 && number <= 36)
+    {
+        printf("Cermin Pengganda\n");
+    }
+    else if (number >= 37 && number <= 51)
+    {
+        printf("Senter Pembesar Hoki\n");
+    }
+    else if (number >= 52 && number <= 66)
+    {
+        printf("Senter Pengecil Hoki\n");
+    }
+    else if (number >= 67 && number <= 70)
+    {
+        printf("Mesin Penukar Posisi\n");
+    }
+    else
+    {
+        printf("Teknologi Gagal\n");
+    }
+}
