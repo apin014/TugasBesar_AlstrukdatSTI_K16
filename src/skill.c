@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "listlinier.h"
+#include "player.h"
+#include <string.h>
 #include <time.h>
 
 int RandomSkill(int number)
@@ -39,28 +41,26 @@ int RandomSkill(int number)
     }
 }
 
-/* masih skill hanya 1 */
 int main ()
 {
     int input, number;
     List skill;
+    Player P;
     printf ("Kamu memiliki skill :\n");
-    InsVLast(&skill, RandomSkill(number));
+    InsVLast(&skill, RandomSkill(number)); /* Masih bingung kalau 2 skill nya */
     printf ("Tekan 0 untuk keluar. Masukkan bilangan negatif untuk membuang skill.\n");
     printf("Masukkan skill: ");
     scanf("%d", &input);
     if (input > 0)
     {
-        printf("Player memakai skill ");
-        RandomSkill(number);
+        UseSkill(P, input);
         DelP(&skill, input);
 
     }
     else if (input < 0)
     {
         input = input * -1;
-        printf("Player membuang skill ");
-        RandomSkill(number);
+        RemoveSkill(&P, &input);
         DelP(&skill, input);
     }
     else
