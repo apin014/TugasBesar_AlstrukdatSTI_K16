@@ -2,11 +2,11 @@
 #include<stdlib.h>
 #include<stdio.h>
 
-boolean IsEmpty (List L) {
+boolean IsListEmpty (List L) {
     return (First(L) == Nil);
 }
 
-void CreateEmpty (List *L) {
+void CreateEmptyList (List *L) {
     First(*L) = Nil;
 }
 
@@ -48,7 +48,7 @@ void InsertFirst (List *L, address P) {
 }
 
 void InsertLast (List *L, address P) {
-    if (IsEmpty(*L)) {
+    if (IsListEmpty(*L)) {
         InsertFirst(L, P);
     } else {
         address last = First(*L);
@@ -141,7 +141,7 @@ void DelVLast (List *L, infotype *X) {
 }
 
 void PrintInfo (List L) {
-    if (IsEmpty(L)) {
+    if (IsListEmpty(L)) {
         printf("[]");
     } else {
         address p = First(L);
@@ -180,8 +180,8 @@ infotype Max (List L) {
 }
 
 void Konkat1 (List *L1, List *L2, List *L3) {
-    CreateEmpty(L3);
-    if (IsEmpty(*L1)){
+    CreateEmptyList(L3);
+    if (IsListEmpty(*L1)){
         First(*L3) = First(*L2);
     } else {
         First(*L3) = First(*L1);
@@ -191,8 +191,8 @@ void Konkat1 (List *L1, List *L2, List *L3) {
         }
         Next(lastL1) = First(*L2);
     }
-    CreateEmpty(L1);
-    CreateEmpty(L2);
+    CreateEmptyList(L1);
+    CreateEmptyList(L2);
 }
 
 address AdrMax (List L) {
@@ -232,9 +232,9 @@ float Average (List L) {
 
 void InversList (List *L) {
     List L1;
-    CreateEmpty(&L1);
+    CreateEmptyList(&L1);
     infotype X;
-    while (!IsEmpty(*L)) {
+    while (!IsListEmpty(*L)) {
         DelVFirst(L, &X);
         InsVFirst(&L1, X);
     }

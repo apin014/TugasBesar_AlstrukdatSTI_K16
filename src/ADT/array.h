@@ -26,7 +26,7 @@ typedef struct
 
 void MakeEmpty (TabInt *T);
 
-int NbElmt (TabInt T);
+int NbEl (TabInt T);
 
 int MaxNbEl (TabInt T);
 

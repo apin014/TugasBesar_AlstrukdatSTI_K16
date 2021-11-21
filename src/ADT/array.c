@@ -5,7 +5,7 @@ void MakeEmpty (TabInt *T) {
     T->Neff = 0;
 }
 
-int NbElmt (TabInt T) {
+int NbEl (TabInt T) {
     return T.Neff;
 }
 
@@ -46,9 +46,9 @@ boolean IsIdxEff (TabInt T, IdxType i) {
 }
 
 boolean IsEmpty (TabInt T) {
-    return (NbElmt(T) == 0);
+    return (NbEl(T) == 0);
 }
 
 boolean IsFull (TabInt T) {
-    return (NbElmt(T) == MaxNbEl(T));
+    return (NbEl(T) == MaxNbEl(T));
 }

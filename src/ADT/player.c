@@ -3,7 +3,6 @@
 #include <string.h>
 #include "boolean.h"
 #include "listlinier.h"
-#include "listlinier.c"
 #include "player.h"
 
 
@@ -24,15 +23,23 @@
 //     return 0;
 // }
 
-void PLAYER (Player P){
-    printf("%c", Player.name)
+void NewPlayer(Player *P) {
+    P->position = 1;
+    List *skillList = &(P->skill);
+    List *buffList = &(P->buff);
+    CreateEmptyList(skillList); CreateEmptyList(buffList);
 }
 
 
+char* PLAYER(Player *P){
+    return P->name;
+}
+
+/*
 void SKILL(Player P, int input){
     int idx = 1;
     printf ("Kamu memiliki skill :\n");
-    if (IsEmpty(P.skill)){
+    if (IsListEmpty(P.skill)){
         printf(" ");
     }
     else {
@@ -45,7 +52,7 @@ void SKILL(Player P, int input){
             idx ++;
         }
     }
-    printf ("Tekan 0 untuk keluar. Masukkan bilangan negatif untuk membuang skill.\n");
+    printf("Tekan 0 untuk keluar. Masukkan bilangan negatif untuk membuang skill.\n");
     scanf("Masukkan skill: %d", input);
     if (input > 0){
         UseSkill(P, input);
@@ -91,17 +98,17 @@ void UseSkill(Player P, int input){
     }
 }
 
-void RemoveSkill (Player *P, int *input){
+void RemoveSkill(Player *P, int *input){
     DelP(&P.skill, &SearchValue(L, input));
 }
 
 
-char SearchValue (List L, int X){
+char SearchValue(List L, int X){
     address P;
     List L;
     int idx = 1;
     P = First(L);
-    if (!IsEmpty(L)){
+    if (!IsListEmpty(L)){
         while (P!=Nil && idx!=X){
             if (idx == X){
                 return Info(P);
@@ -115,9 +122,9 @@ char SearchValue (List L, int X){
     }
 }
 
-void BUFF (Player P){
+void BUFF(Player P){
     int idx = 1;
-    if (IsEmpty(P.buff)){
+    if (IsListEmpty(P.buff)){
         printf(" ");
     }
     else {
@@ -132,3 +139,4 @@ void BUFF (Player P){
     }
 }
 
+*/

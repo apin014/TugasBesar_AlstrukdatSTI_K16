@@ -1,4 +1,11 @@
 #include"console.c"
+#include"ADT/boolean.h"
+#include"ADt/mesin_kar.c"
+#include"ADT/mesin_kata.c"
+#include"ADT/array.c"
+#include"ADT/arrayChar.c"
+#include"ADT/listlinier.c"
+#include"ADT/player.c"
 #include<stdio.h>
 
 int main() {
@@ -6,11 +13,13 @@ int main() {
     {
         menu();
         chooseMode(&gameStatus);
-    } while (gameStatus != 1 && gameStatus != 2 && gameStatus != 3);
+    } while (gameStatus != 1 && gameStatus != 2);
     if (gameStatus == 1) {
-        printf("New game has been chosen\n");
-    } else if (gameStatus == 2) {
-        printf("Load game has been chosen\n");
+        newGame();
+        while (!gameFinished) {
+            playRound();
+            gameFinished = true;
+        }
     } else {
         printf("Game exited\n");
     }
