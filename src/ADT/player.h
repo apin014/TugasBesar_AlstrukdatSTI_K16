@@ -14,7 +14,7 @@ typedef struct {
     char name [255];
     int position;
     List skill ;
-    List buff ;
+    boolean buff [5];
 }Player;
 
 void NewPlayer(Player *P);

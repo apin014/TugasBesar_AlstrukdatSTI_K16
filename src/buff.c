@@ -1,32 +1,11 @@
 #include "buff.h"
 #include "ADT/player.h"
 
-List activate_buffs(Player *P){
-	int buff;
-	List buff_aktif;
-	address S;
-	
-	S = First(*P.buff);
-	while (S != Nil){
-		if (Info(S) == 1){
-			imunitas_teleport(*P);
-		}
-		if (Info(S) == 2){
-			cermin_pengganda(P);
-		}
-		if (Info(S) == 3){
-			senter_pembesar_hoki(P);
-		}
-		if (Info(S) == 4){
-			senter_pengecil_hoki(P);
-		}
-		S = Next(S);
-	}
-	
-	return buff_aktif;
-}
-
-bool cek_imunitas_teleport(Player *P){
+/* Kemungkinan di sini bakal banyak berubah, tapi harusnya implementasinya ga susah nantinya.
+jadi, aktivasi/dekativasi buff itu tinggal ubah array buff yang dimiliki player, yang asalnya false jadi true
+atau kebalikannya.
+*/
+void cek_imunitas_teleport(Player *P){
 	List L; // List semua teleporter (gmn guys gangerti)
 	bool teleport;
 	char t;

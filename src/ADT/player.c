@@ -5,29 +5,20 @@
 #include "listlinier.h"
 #include "player.h"
 
+/*buat fungsi2 yang berhubungan sama skill, nanti pindahin aja ke skill.h sama skill.c 
+yang nampilin buff, jadinya pindah ke file buff
+*/
 
-
-
-// void showskill (char *input){
-//     char command[] = "SKILL";
-//     if (strcmp(command, input) == 0) {
-//         printf("Kamu memliki skill");
-//     }
-    
-// }
-
-// int main (){
-//     char input;
-//     scanf("%s", &input);
-//     showskill(&input);
-//     return 0;
-// }
 
 void NewPlayer(Player *P) {
     P->position = 1;
     List *skillList = &(P->skill);
     List *buffList = &(P->buff);
-    CreateEmptyList(skillList); CreateEmptyList(buffList);
+    CreateEmptyList(skillList);
+    for (int i = 1; i <= 5; i++)
+    {
+        P->buff[i] = false;
+    }
 }
 
 

@@ -1,0 +1,1 @@
+// Realisasi/implementasi fungsi2 yang dideklarasiin di skill.h
