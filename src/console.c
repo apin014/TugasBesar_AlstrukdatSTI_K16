@@ -81,9 +81,9 @@ void newGame() {
     gameFinished = false;
     printf("Permainan dimulai dengan 2 orang pemain\n");
     printf("Mapsize: %d\n", NbElmtChar(map));
-    printf("Posisi %s: ", p1.name);
+    printf("Posisi %s: ", PLAYER(&p1));
     printMap(map, p1.position);
-    printf("Posisi %s: ", p2.name);
+    printf("Posisi %s: ", PLAYER(&p2));
     printMap(map, p2.position);
     printf("Max roll: %d\n", maxRoll);
     printf("Teleporter count: %d\n", teleporterCount);
@@ -154,16 +154,8 @@ void printMap(TabChar map, int playerPosition) {
 }
 
 void inspectTile(int tile, TabInt teleporterIn, TabInt teleporterOut) {
-    int i = 1;
-    boolean found = false;
-    while (i <= NbEl(teleporterIn) && !found) {
-        if (tile == GetElmt(teleporterIn, i)) {
-            found = true;
-        } else {
-            i++;
-        }
-    }
-    if (found) {
+    IdxType i = GetIdx(teleporterIn, tile);
+    if (i != IdxUndef) {
         printf("Petak %d memiliki teleporter dengan pintu keluar di petak %d\n", tile, GetElmt(teleporterOut, i));
     } else {
         printf("Petak %d merupakan petak kosong\n", tile);
@@ -190,20 +182,54 @@ void commands(Player *P) {
         char *choice = (char*)malloc(sizeof(char)*8);
         KataToString(CKata, choice);
         if (strcmp(Roll, choice) == 0) {
-            printf("%s has chosen to ROLL\n", PLAYER(P));
+            printf("%s memutuskan untuk ROLL\n", PLAYER(P));
             int rollVal = roll(0, maxRoll, P->position);
             printf("Roll value: %d\n", rollVal);
-            P->position += rollVal;
+            if (P->position + rollVal <= NbElmtChar(map) && GetElmtChar(map, P->position + rollVal) != '#') {
+                printf("%s dapat maju\n", PLAYER(P));
+                if (P->position - rollVal >= 1 && GetElmtChar(map, P->position - rollVal) != '#') {
+                    printf("%s dapat mundur\n", PLAYER(P));
+                    int move = -999;
+                    while (move != 1 && move != 2) {
+                        printf("1. Maju ke %d\n2. Mundur ke %d\n", P->position+rollVal, P->position-rollVal);
+                        chooseMode(&move);
+                    }
+                    if (move == 1) {
+                        P->position += rollVal;
+                        printf("%s maju ke %d\n", PLAYER(P),  P->position);
+                    } else if (move == 2) {
+                        P->position -= rollVal;
+                        printf("%s mundur ke %d\n", PLAYER(P),  P->position);
+                    }
+                } else {
+                    P->position += rollVal;
+                    printf("%s maju ke %d\n", PLAYER(P),  P->position);
+                }
+                teleport(&(P->position), tIn, tOut);
+            } else {
+                if (P->position - rollVal >= 1 && GetElmtChar(map, P->position - rollVal) != '#') {
+                    printf("%s dapat mundur\n", PLAYER(P));
+                    P->position -= rollVal;
+                    printf("%s mundur ke %d\n", PLAYER(P),  P->position);
+                    teleport(&(P->position), tIn, tOut);
+                } else {
+                    printf("%s tidak bisa bergerak ke mana-mana\n", PLAYER(P));
+                }
+            }
+            printf("Posisi %s sekarang ada di petak %d\n", PLAYER(P), P->position);
             free(choice);
             hasRolled = true;
         } else if (strcmp(Skill, choice) == 0) {
-            printf("%s has chosen to look at their SKILLS\n", PLAYER(P));
+            printf("%s melihat SKILLS\n", PLAYER(P));
             free(choice);
         } else if (strcmp(Buff, choice) == 0) {
-            printf("%s has chosen to look at their BUFFS\n", PLAYER(P));
+            printf("%s melihat BUFFS\n", PLAYER(P));
             free(choice);
         } else if (strcmp(Map, choice) == 0) {
-            printMap(map, P->position);
+            printf("%s: ", PLAYER(&p1));
+            printMap(map, p1.position);
+            printf("%s: ", PLAYER(&p2));
+            printMap(map, p2.position);
             free(choice);
         } else if (strcmp(Inspect, choice) == 0) {
             printf("Masukkan petak: ");
@@ -234,7 +260,7 @@ void commands(Player *P) {
             printf("Mohon maaf, untuk sekarang command ini belum tersedia\n");
             free(choice);
         } else {
-            printf("COMMAND UNDEFINED\n");
+            printf("COMMAND UNDEFINED, PLEASE TRY AGAIN\n");
             free(choice);
         }
     }
@@ -243,4 +269,15 @@ void commands(Player *P) {
 void playRound() {
     commands(&p1);
     commands(&p2);
+}
+
+void teleport(int *position, TabInt teleporterIn, TabInt teleporterOut) {
+    IdxType i = GetIdx(teleporterIn, *position);
+    if (i != IdxUndef) {
+        int teleportPos = GetElmt(teleporterOut, i);
+        printf("Terjadi teleportasi ke %d\n", teleportPos);
+        *position = teleportPos;
+    } else {
+        printf("Tidak terjadi teleportasi\n");
+    }
 }

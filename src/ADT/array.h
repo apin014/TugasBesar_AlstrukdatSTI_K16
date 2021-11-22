@@ -50,5 +50,7 @@ boolean IsEmpty (TabInt T);
 
 boolean IsFull (TabInt T);
 
+IdxType GetIdx (TabInt T, ElType v);
+
 
 #endif

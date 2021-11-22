@@ -18,7 +18,14 @@ int main() {
         newGame();
         while (!gameFinished) {
             playRound();
-            gameFinished = true;
+            if (p1.position == NbElmtChar(map) || p2.position == NbElmtChar(map)) {
+                gameFinished = true;
+            }
+        }
+        if (p1.position == NbElmtChar(map)) {
+            printf("%s adalah pemenangnya\n", PLAYER(&p1));
+        } else {
+            printf("%s adalah pemenangnya\n", PLAYER(&p2));
         }
     } else {
         printf("Game exited\n");

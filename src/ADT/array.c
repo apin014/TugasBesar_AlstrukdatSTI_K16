@@ -52,3 +52,20 @@ boolean IsEmpty (TabInt T) {
 boolean IsFull (TabInt T) {
     return (NbEl(T) == MaxNbEl(T));
 }
+
+IdxType GetIdx(TabInt T, ElType v) {
+    IdxType i = IdxMin;
+    boolean found = false;
+    while (i <= NbEl(T) && !found) {
+        if (v == GetElmt(T, i)) {
+            found = true;
+        } else {
+            i++;
+        }
+    }
+    if (found) {
+        return i;
+    } else {
+        return IdxUndef;
+    }
+}

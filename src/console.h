@@ -37,4 +37,6 @@ void commands(Player *P);
 
 void playRound();
 
+void teleport(int *position, TabInt teleporterIn, TabInt teleporterOut);
+
 #endif
