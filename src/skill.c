@@ -8,8 +8,6 @@
 
 void RandomSkill(int number)
 {
-    srand(time(NULL));
-    number = (rand() % 100) + 1;
     if (number >= 1 && number <= 10)
     {
         printf("%s\n", skillNames[0]);
@@ -44,15 +42,14 @@ void RandomSkill(int number)
     }
 }
 
-void TotalSkill(List *L, int X)
+void AddSkill(Player *P)
 {
-    address P = First(L);
-
-    if (P != Nil)
+    address loc = First(L);
+    srand(time(NULL));
+    if (loc != Nil)
     {
-        if (NbElmt(*L) < 10)
-        {
-            InsVLast(L,P)
+        if (NbElmt(*P->skill) < 10){
+            InsVLast(*P->skill,RandomSkill((rand() % 100) + 1))
         } else
         {
             printf("Skill sudah penuh\n")
@@ -60,9 +57,41 @@ void TotalSkill(List *L, int X)
     }
 }
 
+void CerminPengganda (Player *P){
+    printf("%s memakai skill Cermin Pengganda\n", P->name);
+    if (NbElmt(*P->skill) < 10){
+        AddSkill(*P);
+        AddSkill(*P);
+    }
+}
+
+void SenterPembesarHoki (Player *P){
+    printf("%s memakai skill Senter Pembesasr Hoki\n", *P->name);
+    //fungsi roll tapi antara floor(MaxRoll/2) dan MaxRoll
+}
+
+void SenterPembesarHoki (Player *P){
+    printf("%s memakai skill Senter Pembesasr Hoki\n", *P->name);
+    //fungsi roll tapi antara 1 dan floor(MaxRoll/2) 
+}
+
+void MesinPenukarPosisi (Player *P1, Player *P2){
+    int idxpemain;
+    List temp;
+    CreateEmptyList(temp);
+    printf("%s memakai skill Senter Pembesasr Hoki\n", *P1->name);
+    printf ("Pilih pemain yang ingin ditukar posisi :\n");
+    //tampil nama pemain lain
+    scanf("%d", &idxpemain);
+    First(temp) = P1->position;
+    P1->position = P2->position;
+    P2->position = info(First(temp)); 
+}
+
 void SKILL(Player P, int input)
 {
     int idx = 1;
+    AddSkill(&P);
     printf ("Kamu memiliki skill :\n");
     if (IsListEmpty(P.skill)){
         printf(" ");
@@ -78,7 +107,7 @@ void SKILL(Player P, int input)
         }
     }
     printf("Tekan 0 untuk keluar. Masukkan bilangan negatif untuk membuang skill.\n");
-    scanf("Masukkan skill: %d", input);
+    scanf("Masukkan skill: %d \n", input);
     if (input > 0){
         UseSkill(P, input);
         DelP(&P, input);

@@ -5,6 +5,24 @@
 jadi, aktivasi/dekativasi buff itu tinggal ubah array buff yang dimiliki player, yang asalnya false jadi true
 atau kebalikannya.
 */
+void BUFF (Player *P){
+	int idx = 1;
+    printf ("Kamu memiliki buff :\n");
+    if (IsListEmpty(P.buff)){
+        printf(" ");
+    }
+    else {
+        address loc;
+        loc = First(P.buff);
+        while (loc != Nil){
+            printf ("%d. ",idx);
+            printf ("%c\n", Info(loc));
+            loc = Next(loc);
+            idx ++;
+        }
+    }
+}
+
 void cek_imunitas_teleport(Player *P){
 	List L; // List semua teleporter (gmn guys gangerti)
 	bool teleport;

@@ -1,6 +1,6 @@
 #include"console.c"
 #include"ADT/boolean.h"
-#include"ADt/mesin_kar.c"
+#include"ADT/mesin_kar.c"
 #include"ADT/mesin_kata.c"
 #include"ADT/array.c"
 #include"ADT/arrayChar.c"
