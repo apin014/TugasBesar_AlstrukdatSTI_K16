@@ -3,13 +3,18 @@
 
 #include "ADT/boolean.h"
 
-#define Nil NULL // ini kayaknya gaperlu (?)
-
 const char *buffNames[5];
 buffNames[1] = "Imunitas Teleport";
 buffNames[2] = "Cermin Pengganda";
 buffNames[3] = "Senter Pembesar Hoki";
 buffNames[4] = "Senter Pengecil Hoki";
+
+typedef struct {
+    char name [255];
+    int position;
+    List skill ;
+    boolean buff[5] = {false, false, false, false, false};
+}Player;
 
 void imunitas_teleport(Player *P);
 /* Mengaktifkan buff Imunitas Teleport */
