@@ -14,8 +14,10 @@ typedef struct {
     char name [255];
     int position;
     List skill ;
-    boolean buff [5];
+    boolean buff [5] ;
 }Player;
+
+
 
 void NewPlayer(Player *P);
 /* Menginisiasi player kosong yang baru */
@@ -23,20 +25,20 @@ void NewPlayer(Player *P);
 char* PLAYER(Player *P);
 /* Mengirim nama pemain */
 
-void SKILL(Player P, int input);
-/* Menampilkan daftar skill yang dimiliki dan menanyakan 
-apakah pemain ingin menggunakan suatu skill. */
+// void SKILL(Player P, int input);
+// /* Menampilkan daftar skill yang dimiliki dan menanyakan 
+// apakah pemain ingin menggunakan suatu skill. */
 
-void UseSkill(Player P, int *input);
-/* Menggunakan skill pemain jika memasukkan nilai positif */
+// void UseSkill(Player P, int *input);
+// /* Menggunakan skill pemain jika memasukkan nilai positif */
 
-void RemoveSkill(Player *P, int *input);
-/* Membuang skill pemain jika memasukkan nilai negatif */
+// void RemoveSkill(Player *P, int *input);
+// /* Membuang skill pemain jika memasukkan nilai negatif */
 
-char SearchValue(List L, int X);
-/* Mencari value dari suatu array dengan indeksnya */
+// char SearchValue(List L, int X);
+// /* Mencari value dari suatu array dengan indeksnya */
 
-void BUFF(Player P);
-/* Menghasilkan daftar buff yang dimiliki pemain. */
+// void BUFF(Player P);
+// /* Menghasilkan daftar buff yang dimiliki pemain. */
 
 #endif

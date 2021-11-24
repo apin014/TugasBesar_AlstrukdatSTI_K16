@@ -122,6 +122,7 @@ void chooseMode(int *spec) {
 }
 
 int roll(int buffStat, int maxRoll, unsigned int seedOffSet) {
+    //kayaknya parameterny hrsny buffstat doang deh, yg maxroll ama seedoffset di declare di kamus lokal (?)
     srand(time(NULL) - seedOffSet);
     unsigned int seed = (unsigned) rand();
     srand(seed);

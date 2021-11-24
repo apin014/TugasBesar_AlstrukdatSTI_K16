@@ -9,11 +9,9 @@
 yang nampilin buff, jadinya pindah ke file buff
 */
 
-
 void NewPlayer(Player *P) {
     P->position = 1;
     List *skillList = &(P->skill);
-    List *buffList = &(P->buff);
     CreateEmptyList(skillList);
     for (int i = 1; i <= 5; i++)
     {
