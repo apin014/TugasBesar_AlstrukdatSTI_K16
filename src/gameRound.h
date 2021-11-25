@@ -6,7 +6,7 @@
 #ifndef GAMEROUND_H
 #define GAMEROUND_H
 
-void commands(Player *P);
+void commands(Player *PPrime, Player *PSec);
 /* Prosedur untuk menjalankan command yang player dapat gunakan pada turn nya */
 
 void playRound();

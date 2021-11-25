@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "skill.h"
 #include <string.h>
 #include <time.h>
+#include "console.h"
+#include "buff.h"
 
 /*
 SKILL
@@ -59,44 +59,46 @@ int RandomSkill(int number)
     }
 }
 
+void SkillPintuGaKeManaMana (Player *P) {
+    printf("%s memakai skill Pintu Ga Ke Mana Mana\n");
+    BuffImunitasTeleport(P);
+}
 
 void SkillCerminPengganda (Player *P){
-    if (P->buff[2]) {
-        printf ("Anda tidak dapat menggunakan skill Cermin Pengganda.");
+    if (P->buff[2] || NbElmt(P->skill) >= 10) {
+        printf ("Tidak dapat menggunakan skill Cermin Pengganda\n");
     }
     else {
-    printf("%c memakai skill Cermin Pengganda\n", PLAYER(P));
-    if (NbElmt(P->skill) < 10){
+        printf("%s memakai skill Cermin Pengganda\n", PLAYER(P));
         AddSkill(P);
         AddSkill(P);
-        P->buff[2] = true;
-        }
+        BuffCerminPengganda(P);
     }
 }
 
 void SkillSenterPembesarHoki (Player *P){
     if (P->buff[3] || P->buff[4]) {
-        printf ("Anda tidak dapat menggunakan Senter Pembesar Hoki.");
+        printf ("Tidak dapat menggunakan Senter Pembesar Hoki\n");
     }
     else {
-        printf("%c memakai skill Senter Pembesar Hoki\n", *P->name);
-        P->buff[3] = true;
+        printf("%s memakai skill Senter Pembesar Hoki\n", PLAYER(P));
+        BuffSenterPembesarHoki(P);
     }
 }
 
 void SkillSenterPengecilHoki (Player *P){
     if (P->buff[4] || P->buff[3]) {
-        printf ("Anda tidak dapat menggunakan skill Senter Pengecil Hoki.");
+        printf ("Tidak dapat menggunakan skill Senter Pengecil Hok\n");
     }
     else {
-        printf("%c memakai skill Senter Pengecil Hoki\n", *P->name);
-        P->buff[4] = true;
+        printf("%s memakai skill Senter Pengecil Hoki\n", PLAYER(P));
+        BuffSenterPengecilHoki(P);
     }    
 }
 
 void SkillMesinPenukarPosisi (Player *P1, Player *P2){
     int t;
-    printf("%c memakai skill Mesin Penukar Posisi\n", *P1->name);
+    printf("%s memakai skill Mesin Penukar Posisi\n", PLAYER(P1));
     printf("Posisi %c: %d -> %d\n", PLAYER(P1), P1->position, P2->position);
     printf("Posisi %c: %d -> %d\n", PLAYER(P2), P2->position, P1->position);
     t = P1->position;
@@ -107,88 +109,102 @@ void SkillMesinPenukarPosisi (Player *P1, Player *P2){
 
 void AddSkill(Player *P)
 {
-    int x ;
+    int x;
+    srand(time(NULL));
     if (NbElmt(P->skill) < 10){
         x = RandomSkill((rand() % 100) + 1);
         if (x != 0){
-            printf("Didapat skill %s\n", skillNames[x]);
+            printf("%s mendapat skill %s\n", PLAYER(P), skillNames[x]);
             InsVLast(&P->skill, x);
         }
         else {
-            printf ("Teknologi Gagal.\n");
+            printf ("Teknologi Gagal\n");
         }
     } else {
-        printf("Skill sudah penuh.\n");
+        printf("Skill sudah penuh\n");
     }
 }
 
-void SKILL(Player P)
+void SKILL(Player *P1, Player *P2)
 {
-    int idx = 1;
-    int input;
-    printf ("Kamu memiliki skill :\n");
-    PrintSkill(P);
-    printf("Tekan 0 untuk keluar. Masukkan bilangan negatif untuk membuang skill\n");
-    printf("> ");
-    scanf("%d", &input);
-    if (input > 0){
-        UseSkill1(P, input);
-        RemoveSkill(&P, input);
-    }
-    else if (input < 0){
-        RemoveSkill(&P, input);
-    }
-    else {
-        printf("");
+    PrintSkill(*P1);
+    if (!IsListEmpty(P1->skill)) {
+        int input;
+        printf("Tekan 0 untuk keluar. Masukkan bilangan negatif untuk membuang skill\n");
+        printf("> ");
+        scanf("%d", &input);
+        if (input > 0){
+            if (SearchValue(P1->skill, input) != 5 && SearchValue(P1->skill, input) != 6 && SearchValue(P1->skill, input) != 7) {
+                UseSkill1(P1, input);
+            } else {
+                UseSkill2(P1, P2, input);
+            }
+            RemoveSkill(P1, input);
+        }
+        else if (input < 0){
+            RemoveSkill(P1, input);
+        }
+        else {
+            printf("");
+        }
     }
 }
 
-void UseSkill1(Player P, int input)
+void UseSkill1(Player *P, int input)
 {
-    if (SearchValue(P.skill, input) == 1) 
+    if (SearchValue(P->skill, input) == 1) 
     {
-        printf("%s memakai skill Pintu Ga Ke  Mana Mana\n", PLAYER(&P));
+        SkillPintuGaKeManaMana(P);
+    }
+    else if (SearchValue(P->skill, input) == 2) 
+    {
+        SkillCerminPengganda(P);
+    }
+    else if (SearchValue(P->skill, input) == 3) 
+    {
+        SkillSenterPembesarHoki(P);
+    }
+    else if (SearchValue(P->skill, input) == 4) 
+    {
+        SkillSenterPengecilHoki(P);
+    }
+}
+
+void UseSkill2(Player *P1, Player *P2, int input) {
+    if (SearchValue(P1->skill, input) == 5)  
+    {
+        SkillMesinPenukarPosisi(P1, P2);  
+    }
+    else if (SearchValue(P1->skill, input) == 6)  
+    {
+        printf("%s memakai skill Mesin Waktu\n", PLAYER(P1));
         //Run Skill Function
     }
-    else if (SearchValue(P.skill, input) == 2) 
+    else if (SearchValue(P1->skill, input) == 7) 
     {
-        printf("%s memakai skill Cermin Pengganda\n", PLAYER(&P));
-        SkillCerminPengganda(&P);
-    }
-    else if (SearchValue(P.skill, input) == 3) 
-    {
-        printf("%s memakai skill Senter Pembesar Hoki\n", PLAYER(&P));
-        SkillSenterPembesarHoki(&P);
-    }
-    else if (SearchValue(P.skill, input) == 4) 
-    {
-        printf("%s memakai skill Senter Pengecil Hoki\n", PLAYER(&P));
-        SkillSenterPengecilHoki(&P);
-    }
-}
-
-void UseSkill2(Player P1, Player P2, int input) {
-    if (SearchValue(P.skill, input) == 5)  
-    {
-        printf("%s memakai skill Mesin Penukar Posisi\n", PLAYER(&P1));
-        SkillMesinPenukarPosisi(&P1, &P2);  
-    }
-    else if (SearchValue(P.skill, input) == 6)  
-    {
-        printf("%s memakai skill Mesin Waktu\n", PLAYER(&P1));
-        //Run Skill Function
-    }
-    else if (SearchValue(P.skill, input) == 7) 
-    {
-        printf("%s memakai skill Baling Baling Jambu\n", PLAYER(&P1));
+        printf("%s memakai skill Baling Baling Jambu\n", PLAYER(P1));
         //Run Skill Function
     }
 }
 
 void RemoveSkill(Player *P, int input)
 {
+    infotype x;
     input = abs(input);
-    DelP(&(P->skill), SearchValue(P->skill, input));
+    address p;
+    if (input == 1) {
+        DelVFirst(&(P->skill), &x);
+    } else {
+        int idx = 1;
+        p = First(P->skill);
+        while (idx < input - 1) {
+            idx++;
+            p = Next(p);
+        }
+        address loc = Next(p);
+        Next(p) = Next(loc);
+        Dealokasi(&loc);
+    }
 }
 
 int SearchValue(List L, int X)
@@ -198,24 +214,16 @@ int SearchValue(List L, int X)
     P = First(L);
     if (!IsListEmpty(L)){
         while (P!=Nil && idx!=X){
-            if (idx == X){
-                return Info(P);
-                break;
-            }
-            else {
-                P = Next(P);
-                idx ++;
-            }
+            P = Next(P);
+            idx ++;
         }
         return Info(P);
     }
 }
 
 void PrintSkill (Player P){
-    if (IsListEmpty(P.skill)){
-        printf("Tidak memiliki skill\n");
-    }
-    else {
+    if (!IsListEmpty(P.skill)){
+        printf ("Kamu memiliki skill :\n");
         int idx = 1;
         address loc;
         loc = First(P.skill);
@@ -225,5 +233,7 @@ void PrintSkill (Player P){
             loc = Next(loc);
             idx ++;
         }
+    } else {
+        printf("Tidak memiliki skill\n");
     }
 }

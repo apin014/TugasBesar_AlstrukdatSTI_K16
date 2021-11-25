@@ -11,9 +11,8 @@ yang nampilin buff, jadinya pindah ke file buff
 
 void NewPlayer(Player *P) {
     P->position = 1;
-    List *skillList = &(P->skill);
-    CreateEmptyList(skillList);
-    for (int i = 1; i <= 5; i++)
+    CreateEmptyList(&(P->skill));
+    for (int i = 1; i <= 4; i++)
     {
         P->buff[i] = false;
     }

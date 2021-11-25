@@ -21,20 +21,11 @@ int main() {
     } while (gameStatus != 1 && gameStatus != 2);
     if (gameStatus == 1) {
         newGame();
-        while (!gameFinished) {
-            playRound();
-            if (p1.position == NbElmtChar(map) || p2.position == NbElmtChar(map)) {
-                gameFinished = true;
-            }
-        }
-        if (p1.position == NbElmtChar(map)) {
-            printf("%s adalah pemenangnya\n", PLAYER(&p1));
-        } else {
-            printf("%s adalah pemenangnya\n", PLAYER(&p2));
-        }
+        playRound();
     } else {
         printf("Game exited\n");
     }
+    fclose(pita);
 
     return 0;
 }

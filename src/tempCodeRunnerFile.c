@@ -1,1 +1,2 @@
-P
+
+    PrintInfo(p1.skill);

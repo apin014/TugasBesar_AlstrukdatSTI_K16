@@ -54,15 +54,19 @@ void SkillSenterPengecilHoki (Player *P);
 void SkillMesinPenukarPosisi (Player *P1, Player *P2);
 /* Menukar posisi dengan pemain lain. */
 
+void SkillMesinWaktu (Player *P2);
+
+void SkillBalingBalingJambu (Player *P2);
+
 void AddSkill(Player *P);
 
-void SKILL(Player P);
+void SKILL(Player *P1, Player *P2);
 /* Menampilkan daftar skill yang dimiliki dan menanyakan apakah pemain ingin menggunakan suatu skill. */
 
-void UseSkill1(Player P, int input);
+void UseSkill1(Player *P, int input);
 /* Menggunakan skill pemain jika memasukkan nilai positif */
 
-void UseSkill2(Player P1, Player P2, int input);
+void UseSkill2(Player *P1, Player *P2, int input);
 /* Fungsi UseSkill yang melibatkan dua orang player */
 
 void RemoveSkill(Player *P, int input);

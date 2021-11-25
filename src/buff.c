@@ -18,9 +18,8 @@ void BuffSenterPengecilHoki (Player *P){
 }
 
 void BUFF (Player P){
-	int i;
-	printf("%c memiliki buff aktif : \n", P.name);
-	for (i = 1; i < 5; i++){
+	printf("%s memiliki buff aktif : \n", PLAYER(&P));
+	for (int i = 1; i < 5; i++){
 		if (P.buff[i]){
 			printf("- %s\n", buffNames[i]);
 		}
