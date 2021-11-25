@@ -37,17 +37,10 @@ BUFF
 4 : Senter Pengecil Hoki
 */
 
-// const char *skillNames[] = {"Pintu Ga Ke Mana Mana", "Mesin Waktu", 
-// "Baling Baling Jambu", "Cermin Pengganda",
-// "Senter Pembesar Hoki", "Senter Pengecil Hoki",
-// "Mesin Penukar Posisi","Teknologi Gagal"};
-
 int RandomSkill(int number);
-/* Menampilkan randomized skill dalam representasi angka */
+/* randomized skill dalam representasi angka */
 
-// void SkillPintuGaKeManaMana (Player *P);
-// /* Gunakan skill ini dan mendapatkan dua buah skill baru. */
-// WIP
+void SkillPintuGaKeManaMana (Player *P);
 
 void SkillCerminPengganda (Player *P);
 /* Gunakan skill ini dan mendapatkan dua buah skill baru. */
@@ -66,8 +59,11 @@ void AddSkill(Player *P);
 void SKILL(Player P);
 /* Menampilkan daftar skill yang dimiliki dan menanyakan apakah pemain ingin menggunakan suatu skill. */
 
-void UseSkill(Player P, int input);
+void UseSkill1(Player P, int input);
 /* Menggunakan skill pemain jika memasukkan nilai positif */
+
+void UseSkill2(Player P1, Player P2, int input);
+/* Fungsi UseSkill yang melibatkan dua orang player */
 
 void RemoveSkill(Player *P, int input);
 /* Membuang skill pemain jika memasukkan nilai negatif */

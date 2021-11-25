@@ -9,7 +9,7 @@ Menggunakan konsep stack untuk menyimpan kondisi permainan */
 #include "player.h"
 
 #define Nil 0
-#define MaxTurn 50 /* Asumsi max turn 50 */
+#define MaxTurn 1000 /* Asumsi max turn 1000 */
 
 /* Nil adalah state dengan elemen kosong atau tidak ada state yang disimpan. */
 /* Karena indeks dalam bhs C dimulai 0 maka tabel dg indeks 0 tidak dipakai */

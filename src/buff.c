@@ -5,7 +5,7 @@ void BuffImunitasTeleport (Player *P){
 	P->buff[1] = true;
 }
 
-void BuffImunitasTeleport (Player *P){
+void BuffCerminPengganda (Player *P){
 	P->buff[2] = true;
 }
 

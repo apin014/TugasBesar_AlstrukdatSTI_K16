@@ -15,7 +15,7 @@ char buffNames[5][32] = {
 void BuffImunitasTeleport (Player *P);
 /* Mengaktifkan buff Imunitas Teleport */
 
-void BuffImunitasTeleport (Player *P);
+void BuffCerminPengganda (Player *P);
 /* Mengaktifkan buff Cermin Pengganda */
 
 void BuffSenterPembesarHoki (Player *P);

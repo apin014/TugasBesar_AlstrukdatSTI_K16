@@ -126,60 +126,61 @@ void SKILL(Player P)
 {
     int idx = 1;
     int input;
-    AddSkill(&P);
     printf ("Kamu memiliki skill :\n");
     PrintSkill(P);
-    printf("Tekan 0 untuk keluar. Masukkan bilangan negatif untuk membuang skill.\n");
-    scanf("Masukkan skill: %d \n", input);
+    printf("Tekan 0 untuk keluar. Masukkan bilangan negatif untuk membuang skill\n");
+    printf("> ");
+    scanf("%d", &input);
     if (input > 0){
-        UseSkill(P, input);
-        DelP(&P, input);
+        UseSkill1(P, input);
+        RemoveSkill(&P, input);
     }
     else if (input < 0){
         RemoveSkill(&P, input);
     }
     else {
-        exit;
+        printf("");
     }
 }
 
-void UseSkill(Player P, int input)
+void UseSkill1(Player P, int input)
 {
     if (SearchValue(P.skill, input) == 1) 
     {
-        printf("%c memakai skill Pintu Ga Ke  Mana Mana\n", P.name);
+        printf("%s memakai skill Pintu Ga Ke  Mana Mana\n", PLAYER(&P));
         //Run Skill Function
     }
     else if (SearchValue(P.skill, input) == 2) 
     {
-        printf("%c memakai skill Cermin Pengganda\n", P.name);
+        printf("%s memakai skill Cermin Pengganda\n", PLAYER(&P));
         SkillCerminPengganda(&P);
     }
     else if (SearchValue(P.skill, input) == 3) 
     {
-        printf("%c memakai skill Senter Pembesar Hoki\n", P.name);
+        printf("%s memakai skill Senter Pembesar Hoki\n", PLAYER(&P));
         SkillSenterPembesarHoki(&P);
     }
     else if (SearchValue(P.skill, input) == 4) 
     {
-        printf("%c memakai skill Senter Pengecil Hoki\n", P.name);
+        printf("%s memakai skill Senter Pengecil Hoki\n", PLAYER(&P));
         SkillSenterPengecilHoki(&P);
     }
-    else if (SearchValue(P.skill, input) == 4)  
+}
+
+void UseSkill2(Player P1, Player P2, int input) {
+    if (SearchValue(P.skill, input) == 5)  
     {
-        Player P1;
-        Player P2;
-        printf("%c memakai skill Mesin Penukar Posisi\n", P1.name);
+        printf("%s memakai skill Mesin Penukar Posisi\n", PLAYER(&P1));
         SkillMesinPenukarPosisi(&P1, &P2);  
     }
-    else if (SearchValue(P.skill, input) == 2 )  
+    else if (SearchValue(P.skill, input) == 6)  
     {
-        printf("%c memakai skill Mesin Waktu\n", P.name);
+        printf("%s memakai skill Mesin Waktu\n", PLAYER(&P1));
         //Run Skill Function
     }
-    else if (strcmp(SearchValue(P.skill, input), "Baling Baling Jambu") == 0 ) 
+    else if (SearchValue(P.skill, input) == 7) 
     {
-        printf("%c memakai skill Baling Baling Jambu\n", P.name);
+        printf("%s memakai skill Baling Baling Jambu\n", PLAYER(&P1));
         //Run Skill Function
     }
 }
@@ -187,7 +188,7 @@ void UseSkill(Player P, int input)
 void RemoveSkill(Player *P, int input)
 {
     input = abs(input);
-    DelP(&P->skill, SearchValue(P->skill, input));
+    DelP(&(P->skill), SearchValue(P->skill, input));
 }
 
 int SearchValue(List L, int X)
@@ -206,50 +207,23 @@ int SearchValue(List L, int X)
                 idx ++;
             }
         }
+        return Info(P);
     }
 }
 
-
 void PrintSkill (Player P){
-    int idx;
     if (IsListEmpty(P.skill)){
-        printf(" ");
+        printf("Tidak memiliki skill\n");
     }
     else {
+        int idx = 1;
         address loc;
         loc = First(P.skill);
         while (loc != Nil){
             printf ("%d. ",idx);
-            printf ("%c\n", skillNames[Info(loc)]);
+            printf ("%s\n", skillNames[Info(loc)]);
             loc = Next(loc);
             idx ++;
         }
+    }
 }
-
-// char ConvertSkill (int x){
-//     if (x == 1) {
-//         return "Pintu Ga Ke Mana Mana";
-//     }
-//     else if (x == 2) {
-//         return "Cermin Pengganda";
-//     }
-//     else if (x == 3){
-//         return "Senter Pembesar Hoki"
-//     }
-//     else if (x == 4) {
-//         return "Senter Pengecil Hoki";
-//     }
-//     else if (x == 5){
-//         return "Mesin Penukar Posisi";
-//     }
-//     else if (x == 6){
-//         return "Mesin Waktu";
-//     }
-//     else if (x == 7){
-//         return "Baling Baling Jambu";
-//     }
-//     else if (x == 7){
-//         return "Baling Baling Jambu";
-//     }
-
-// }

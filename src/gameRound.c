@@ -23,7 +23,7 @@ void commands(Player *P) {
     while (!hasRolled) {
         printf("---------------------------\n|          COMMANDS        |\n---------------------------\n");
         printf("[1] ROLL\n---------------------------\n[2] SKILL\n---------------------------\n[3] BUFF\n---------------------------\n[4] MAP\n---------------------------\n[5] INSPECT\n---------------------------\n[6] UNDO\n---------------------------\n");
-        printf("> ");
+        printf("COMMAND> ");
         STARTKATA();
         choice = (char*)malloc(sizeof(char)*8);
         KataToString(CKata, choice);
