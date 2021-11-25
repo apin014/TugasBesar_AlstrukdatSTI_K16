@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "skill.h"
-#include "listlinier.h"
-#include "player.h"
 #include <string.h>
 #include <time.h>
 
@@ -67,74 +65,60 @@ void SkillCerminPengganda (Player *P){
         printf ("Anda tidak dapat menggunakan skill Cermin Pengganda.");
     }
     else {
-    printf("%c memakai skill Cermin Pengganda\n", P->name);
+    printf("%c memakai skill Cermin Pengganda\n", PLAYER(P));
     if (NbElmt(P->skill) < 10){
         AddSkill(P);
         AddSkill(P);
-        P->buff[2] = 0;
+        P->buff[2] = true;
         }
     }
 }
 
 void SkillSenterPembesarHoki (Player *P){
-    if (!P->buff[3]) {
-        printf ("Anda tidak dapat menggunakan skill Cermin Pengganda.");
+    if (P->buff[3] || P->buff[4]) {
+        printf ("Anda tidak dapat menggunakan Senter Pembesar Hoki.");
     }
     else {
         printf("%c memakai skill Senter Pembesar Hoki\n", *P->name);
-        roll(2);
-        P->buff[3] = 0;
+        P->buff[3] = true;
     }
 }
 
 void SkillSenterPengecilHoki (Player *P){
-    if (!P->buff[4]) {
-        printf ("Anda tidak dapat menggunakan skill Cermin Pengganda.");
+    if (P->buff[4] || P->buff[3]) {
+        printf ("Anda tidak dapat menggunakan skill Senter Pengecil Hoki.");
     }
     else {
         printf("%c memakai skill Senter Pengecil Hoki\n", *P->name);
-        roll(1);
-        P->buff[4] = 0;
+        P->buff[4] = true;
     }    
 }
 
 void SkillMesinPenukarPosisi (Player *P1, Player *P2){
-    int idxpemain ;
-    List temp;
-    CreateEmptyList(&temp);
-    printf("%c memakai skill Senter Pembesar Hoki\n", *P1->name);
-    printf ("Pilih pemain yang ingin ditukar posisi :\n");
-    printf("2. %c" , *P2->name);
-    printf(" ");
-    scanf("Masukkan pemain: %d\n", &idxpemain);
-    First(temp) = &P1->position;
-    P1->position = &P2->position;
-    P2->position = info(First(temp));
-
-    printf ("%c sekarang berada di petak %d. ", *P1->name, &P1->position); 
-    printf ("%c sekarang berada di petak %d. ", *P2->name, &P2->position); 
+    int t;
+    printf("%c memakai skill Mesin Penukar Posisi\n", *P1->name);
+    printf("Posisi %c: %d -> %d\n", PLAYER(P1), P1->position, P2->position);
+    printf("Posisi %c: %d -> %d\n", PLAYER(P2), P2->position, P1->position);
+    t = P1->position;
+    P1->position = P2->position;
+    P2->position = t;
     //fungsi tidak memicu teleporter
 }
 
 void AddSkill(Player *P)
 {
-    address loc = First(P->skill);
     int x ;
-    
-    if (loc != Nil)
-    {
-        if (NbElmt(P->skill) < 10){
-            x = RandomSkill((rand() % 100) + 1);
-            if (x != 0){
-                InsVLast(&P->skill, x);
-            }
-            else {
-                printf ("Teknologi Gagal.");
-            }
-        } else
-        {
-            printf("Skill sudah penuh.\n");
+    if (NbElmt(P->skill) < 10){
+        x = RandomSkill((rand() % 100) + 1);
+        if (x != 0){
+            printf("Didapat skill %s\n", skillNames[x]);
+            InsVLast(&P->skill, x);
         }
+        else {
+            printf ("Teknologi Gagal.\n");
+        }
+    } else {
+        printf("Skill sudah penuh.\n");
     }
 }
 
@@ -202,14 +186,13 @@ void UseSkill(Player P, int input)
 
 void RemoveSkill(Player *P, int input)
 {
-    int input = input * (-1);
+    input = abs(input);
     DelP(&P->skill, SearchValue(P->skill, input));
 }
 
 int SearchValue(List L, int X)
 {
     address P;
-    List L;
     int idx = 1;
     P = First(L);
     if (!IsListEmpty(L)){

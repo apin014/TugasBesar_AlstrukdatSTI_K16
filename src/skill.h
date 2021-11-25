@@ -1,22 +1,23 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include "boolean.h"
-#include "listlinier.h"
-#include "player.h"
+#include"ADT/boolean.h"
+#include"ADT/listlinier.h"
+#include"ADT/player.h"
 
 
 #ifndef skill_h
 #define skill_h
 
-const char *skillNames[8];
-char skillNames[] = "Teknologi Gagal ";
-char skillNames[] = "Pintu Ga Ke Mana Mana";
-char skillNames[] = "Cermin Pengganda";
-char skillNames[] = "Senter Pembesar Hoki";
-char skillNames[] = "Senter Pengecil Hoki";
-char skillNames[] = "Mesin Penukar Posisi";
-char skillNames[] = "Mesin Waktu";
-char skillNames[] = "Baling Baling Jambub";
+char skillNames[8][32] = {
+                            "Teknologi Gagal",
+                            "Pintu Ga Ke Mana-Mana",
+                            "Cermin Pengganda",
+                            "Senter Pembesar Hoki",
+                            "Senter Pengecil Hoki",
+                            "Mesin Penukar Posisi",
+                            "Mesin Waktu",
+                            "Baling Baling Jambu"
+                        };
 
 /*
 SKILL
@@ -76,10 +77,5 @@ int SearchValue(List L, int X);
 
 void PrintSkill (Player P);
 /* Menampilkan skill player */
-
-// char ConvertSkill (int x);
-// /* Mengubah representasi angka skill menjadi string */
-// jadinya pake const char *
-
 
 #endif
