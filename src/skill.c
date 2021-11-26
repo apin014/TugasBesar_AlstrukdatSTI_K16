@@ -83,6 +83,7 @@ void SkillSenterPembesarHoki (Player *P){
     else {
         printf("%s memakai skill Senter Pembesar Hoki\n", PLAYER(P));
         BuffSenterPembesarHoki(P);
+        // printf("Dadu akan mengeluarkan angka %d sampai %d.\n", (floor(maxRoll/2)), (maxRoll + 1 - floor(maxRoll/2)));
     }
 }
 
@@ -91,8 +92,9 @@ void SkillSenterPengecilHoki (Player *P){
         printf ("Tidak dapat menggunakan skill Senter Pengecil Hoki\n");
     }
     else {
-        printf("%s memakai skill Senter Pengecil Hoki\n", PLAYER(P));
+        printf("%s memakai skill Senter Pengecil Hoki.\n", PLAYER(P));
         BuffSenterPengecilHoki(P);
+        // printf("Dadu akan mengeluarkan angka 1 sampai %d.\n", (floor(maxRoll/2)));
     }    
 }
 
@@ -131,8 +133,9 @@ void SKILL(Player *P1, Player *P2)
     if (!IsListEmpty(P1->skill)) {
         int input;
         printf("Tekan 0 untuk keluar. Masukkan bilangan negatif untuk membuang skill\n");
-        printf("> ");
-        scanf("%d", &input);
+        printf("\n");
+        printf("Masukkan skill: ");
+        scanf(" %d", &input);
         if (input > 0){
             if (SearchValue(P1->skill, input) != 5 && SearchValue(P1->skill, input) != 6 && SearchValue(P1->skill, input) != 7) {
                 UseSkill1(P1, input);
@@ -140,15 +143,17 @@ void SKILL(Player *P1, Player *P2)
                 UseSkill2(P1, P2, input);
             }
             RemoveSkill(P1, input);
+            // printf("%c membuang skill %c", P1->name, skillNames[SearchValue(P1->skill, input)]);
         }
         else if (input < 0){
             RemoveSkill(P1, input);
+            printf("%s membuang skill %s.\n", P1->name, skillNames[SearchValue(P1->skill, input)]);
         }
         else {
             printf("");
         }
     }
-}
+} 
 
 void UseSkill1(Player *P, int input)
 {
