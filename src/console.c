@@ -22,7 +22,7 @@ void newGame() {
     MakeEmptyChar(&map);
     MakeEmpty(&tIn); MakeEmpty(&tOut);
     printf("---------------------------\nInput config file path: ");
-    STARTKATA();
+    STARTDIRECTORYNAME();
     char *filePath = (char*) malloc (sizeof(char) * CKata.Length+1);
     KataToString(CKata, filePath);
     printf("%s\n", filePath);

@@ -44,6 +44,28 @@ void STARTKATAFILE (char *filename) {
     }
 }
 
+void STARTDIRECTORYNAME () {
+    START();
+    IgnoreBlank();
+    if (CC == MARK) {
+        EndKata = true;
+    } else {
+        EndKata = false;
+        SalinDirName();
+    }
+}
+
+void SalinDirName () {
+    int i = 1;
+    while ((CC != MARK) && (CC != NEWLINE))
+    {
+        CKata.TabKata[i] = CC;
+        ADV();
+        i++;
+    }
+    CKata.Length = i - 1;
+}
+
 void ADVKATA () {
     IgnoreBlank();
     if (CC == MARK) {
