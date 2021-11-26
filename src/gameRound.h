@@ -1,4 +1,5 @@
 #include"ADT/player.h"
+#include"ADT/state.h"
 #include"ADT/boolean.h"
 #include<stdio.h>
 #include<stdlib.h>
@@ -6,10 +7,16 @@
 #ifndef GAMEROUND_H
 #define GAMEROUND_H
 
-void commands(Player *PPrime, Player *PSec);
+void commands1(Player *PPrime, Player *PSec, boolean *undoSignal);
 /* Prosedur untuk menjalankan command yang player dapat gunakan pada turn nya */
 
-void playRound();
-/* Prosedur untuk memainkan satu round penuh sesuai dengan jumlah turn */
+void commands2(Player *PPrime, Player *PSec, boolean *undoSignal);
+
+void play(State *SP1, State *SP2, Player *P1, Player *P2);
+/* Prosedur untuk memainkan satu game penuh */
+
+void playerTurn(Player *PPrime, Player *PSec, boolean *undoSignal);
+
+void undo(State *SP1, State *SP2, Player *P1, Player *P2);
 
 #endif

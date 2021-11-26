@@ -2,22 +2,20 @@
 
 Menggunakan konsep stack untuk menyimpan kondisi permainan */
 
-#include <stdio.h>
-#include "boolean.h"
 #include "state.h"
-#include "player.h"
 
-void CreateEmpty (State *S)
+
+void CreateEmptyState (State *S)
 {
-    Top(*S) = Nil;
+    Top(*S) = NIL;
 }
 
-boolean IsEmpty (State S)
+boolean IsStateEmpty (State S)
 {
-    return (Top(S) == Nil);
+    return (Top(S) == NIL);
 }
 
-boolean IsFull (State S)
+boolean IsStateFull (State S)
 {
     return (Top(S) == MaxTurn);
 }
@@ -30,6 +28,5 @@ void PushPlayer (State * S, Player X)
 
 void PopPlayer (State * S, Player* X)
 {
-    *X = InfoTop(*S);
     Top(*S)--;
 }

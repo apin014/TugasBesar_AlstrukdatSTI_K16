@@ -11,6 +11,7 @@ int gameStatus, maxRoll, teleporterCount;
 TabChar map;
 TabInt tIn, tOut;
 Player p1, p2;
+State sP1, sP2;
 
 void menu() {
     printf("---------------------------\n|        MAIN MENU        |\n---------------------------\n");
@@ -22,10 +23,11 @@ void newGame() {
     MakeEmpty(&tIn); MakeEmpty(&tOut);
     printf("---------------------------\nInput config file path: ");
     STARTKATA();
-    char *filePath = (char*) malloc (sizeof(char) * CKata.Length);
+    char *filePath = (char*) malloc (sizeof(char) * CKata.Length+1);
     KataToString(CKata, filePath);
     printf("%s\n", filePath);
     readConfig(filePath, &map, &maxRoll, &teleporterCount, &tIn, &tOut);
+    free(filePath);
     NewPlayer(&p1); NewPlayer(&p2);
     printf("---------------------------\nPlayer 1 name> ");
     STARTKATA();
@@ -33,6 +35,7 @@ void newGame() {
     printf("---------------------------\nPlayer 2 name> ");
     STARTKATA();
     KataToString(CKata, p2.name);
+    CreateEmptyState(&sP1); CreateEmptyState(&sP2);
     printf("Permainan dimulai dengan 2 orang pemain\n");
     printf("Mapsize: %d\n", NbElmtChar(map));
     printf("Max roll: %d\n", maxRoll);
@@ -51,7 +54,6 @@ void newGame() {
         printf(" %d ", GetElmt(tOut, i));
     }
     printf("]\n");
-    free(filePath);
 }
 
 void chooseMode(int *spec) {

@@ -7,34 +7,36 @@ Menggunakan konsep stack untuk menyimpan kondisi permainan */
 
 #include "boolean.h"
 #include "player.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-#define Nil 0
-#define MaxTurn 1000 /* Asumsi max turn 1000 */
+#define NIL 0
+#define MaxTurn 1024 /* Asumsi max turn 1000 */
 
 /* Nil adalah state dengan elemen kosong atau tidak ada state yang disimpan. */
 /* Karena indeks dalam bhs C dimulai 0 maka tabel dg indeks 0 tidak dipakai */
 
-typedef int address; 
+typedef int addressState; 
 
 typedef struct {
   Player P[MaxTurn+1];
-  address TOP; 
+  addressState TOP; 
 } State;
 
 /* Selektor */
 #define Top(S) (S).TOP
 #define InfoTop(S) (S).P[(S).TOP]
 
-void CreateEmpty (State *S);
+void CreateEmptyState (State *S);
 /* I.S. sembarang; */
 /* F.S. Membuat sebuah state S yang kosong berkapasitas MaxEl */
 /* jadi indeksnya antara 1.. MaxEl+1 karena 0 tidak dipakai */
 /* Ciri state kosong : TOP bernilai Nil */
 
-boolean IsEmpty (State S);
+boolean IsStateEmpty (State S);
 /* Mengirim true jika State kosong = Masih turn 1 */
 
-boolean IsFull (State S);
+boolean IsStateFull (State S);
 /* Mengirim true jika tabel penampung kondisi State penuh = Jika ada max turn */
 
 void PushPlayer (State * S, Player X);

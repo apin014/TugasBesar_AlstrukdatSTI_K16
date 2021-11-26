@@ -11,6 +11,7 @@
 #include"ADT/arrayChar.c"
 #include"ADT/listlinier.c"
 #include"ADT/player.c"
+#include"ADT/state.c"
 #include<stdio.h>
 
 int main() {
@@ -21,11 +22,16 @@ int main() {
     } while (gameStatus != 1 && gameStatus != 2);
     if (gameStatus == 1) {
         newGame();
-        playRound();
+        play(&sP1, &sP2, &p1, &p2);
+        if (p1.position == NbElmtChar(map)) {
+            printf("%s memenangkan permainan!\n", PLAYER(&p1));
+        }
+        if (p2.position == NbElmtChar(map)) {
+            printf("%s memenangkan permainan!\n", PLAYER(&p2));
+        }
     } else {
         printf("Game exited\n");
     }
-    fclose(pita);
 
     return 0;
 }
