@@ -28,7 +28,7 @@ void STARTKATA();
 
 void ADVKATA();
 
-void STARTKATAFILE(const char *filename);
+void STARTKATAFILE(char *filename);
 
 void KataToString (Kata K, char *S);
 

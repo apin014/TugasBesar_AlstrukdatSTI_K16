@@ -33,7 +33,7 @@ void STARTKATA () {
     }
 }
 
-void STARTKATAFILE (const char *filename) {
+void STARTKATAFILE (char *filename) {
     STARTFILE(filename);
     IgnoreBlank();
     if (CC == MARK) {

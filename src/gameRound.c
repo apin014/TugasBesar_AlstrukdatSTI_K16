@@ -10,7 +10,6 @@
 
 void commands(Player *PPrime, Player *PSec) {
     boolean hasRolled, hasEndedTurn;
-    char *choice;
     char Roll[] = "ROLL";
     char Skill[] = "SKILL";
     char Buff[] = "BUFF";
@@ -25,7 +24,7 @@ void commands(Player *PPrime, Player *PSec) {
         printf("[1] ROLL\n---------------------------\n[2] SKILL\n---------------------------\n[3] BUFF\n---------------------------\n[4] MAP\n---------------------------\n[5] INSPECT\n---------------------------\n[6] UNDO\n---------------------------\n");
         printf("COMMAND> ");
         STARTKATA();
-        choice = (char*)malloc(sizeof(char)*8);
+        char *choice = (char*)malloc(sizeof(char)*8);
         KataToString(CKata, choice);
         if (strcmp(Roll, choice) == 0) {
             roll(PPrime, maxRoll, maxRoll);
@@ -83,15 +82,33 @@ void playRound() {
     int round = 1;
     while (!gameFinished) {
         printf("############ ROUND %d ############\n", round);
-        AddSkill(&p1);
+        printf("Posisi %s: ", PLAYER(&p1));
+        printMap(map, p1.position);
+        printf("Posisi %s: ", PLAYER(&p2));
+        printMap(map, p2.position);
+        for (int i = 2; i <= 4; i++)
+        {
+            deactivateBuff(&p1, i);
+        }
+        AddSkill(&p1, 0);
         commands(&p1, &p2);
         if (p1.position == NbElmtChar(map)) {
             gameFinished = true;
+            break;
         }
-        AddSkill(&p2);
+        printf("Posisi %s: ", PLAYER(&p1));
+        printMap(map, p1.position);
+        printf("Posisi %s: ", PLAYER(&p2));
+        printMap(map, p2.position);
+        for (int i = 2; i <= 4; i++)
+        {
+            deactivateBuff(&p2, i);
+        }
+        AddSkill(&p2, 0);
         commands(&p2, &p1);
         if (p2.position == NbElmtChar(map)) {
             gameFinished = true;
+            break;
         }
         round++;
     }

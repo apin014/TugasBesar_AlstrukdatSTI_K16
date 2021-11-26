@@ -10,7 +10,6 @@
 int gameStatus, maxRoll, teleporterCount;
 TabChar map;
 TabInt tIn, tOut;
-boolean gameFinished;
 Player p1, p2;
 
 void menu() {
@@ -33,13 +32,8 @@ void newGame() {
     printf("---------------------------\nPlayer 2 name> ");
     STARTKATA();
     KataToString(CKata, p2.name);
-    gameFinished = false;
     printf("Permainan dimulai dengan 2 orang pemain\n");
     printf("Mapsize: %d\n", NbElmtChar(map));
-    printf("Posisi %s: ", PLAYER(&p1));
-    printMap(map, p1.position);
-    printf("Posisi %s: ", PLAYER(&p2));
-    printMap(map, p2.position);
     printf("Max roll: %d\n", maxRoll);
     printf("Teleporter count: %d\n", teleporterCount);
     printf("Pintu masuk teleporter: \n");

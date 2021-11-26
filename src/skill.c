@@ -60,7 +60,7 @@ int RandomSkill(int number)
 }
 
 void SkillPintuGaKeManaMana (Player *P) {
-    printf("%s memakai skill Pintu Ga Ke Mana Mana\n");
+    printf("%s memakai skill Pintu Ga Ke Mana Mana\n", PLAYER(P));
     BuffImunitasTeleport(P);
 }
 
@@ -70,8 +70,8 @@ void SkillCerminPengganda (Player *P){
     }
     else {
         printf("%s memakai skill Cermin Pengganda\n", PLAYER(P));
-        AddSkill(P);
-        AddSkill(P);
+        AddSkill(P, time(NULL)/60);
+        AddSkill(P, time(NULL)/3600);
         BuffCerminPengganda(P);
     }
 }
@@ -88,7 +88,7 @@ void SkillSenterPembesarHoki (Player *P){
 
 void SkillSenterPengecilHoki (Player *P){
     if (P->buff[4] || P->buff[3]) {
-        printf ("Tidak dapat menggunakan skill Senter Pengecil Hok\n");
+        printf ("Tidak dapat menggunakan skill Senter Pengecil Hoki\n");
     }
     else {
         printf("%s memakai skill Senter Pengecil Hoki\n", PLAYER(P));
@@ -99,18 +99,18 @@ void SkillSenterPengecilHoki (Player *P){
 void SkillMesinPenukarPosisi (Player *P1, Player *P2){
     int t;
     printf("%s memakai skill Mesin Penukar Posisi\n", PLAYER(P1));
-    printf("Posisi %c: %d -> %d\n", PLAYER(P1), P1->position, P2->position);
-    printf("Posisi %c: %d -> %d\n", PLAYER(P2), P2->position, P1->position);
+    printf("Posisi %S: %d -> %d\n", PLAYER(P1), P1->position, P2->position);
+    printf("Posisi %S: %d -> %d\n", PLAYER(P2), P2->position, P1->position);
     t = P1->position;
     P1->position = P2->position;
     P2->position = t;
     //fungsi tidak memicu teleporter
 }
 
-void AddSkill(Player *P)
+void AddSkill(Player *P, int offSet)
 {
     int x;
-    srand(time(NULL));
+    srand(time(NULL) - offSet);
     if (NbElmt(P->skill) < 10){
         x = RandomSkill((rand() % 100) + 1);
         if (x != 0){

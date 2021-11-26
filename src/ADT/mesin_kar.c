@@ -16,7 +16,7 @@ void START() {
     ADV();
 }
 
-void STARTFILE (const char *filename) {
+void STARTFILE (char *filename) {
     pita = fopen(filename, "r");
     if (pita != NULL) {
         ADV();

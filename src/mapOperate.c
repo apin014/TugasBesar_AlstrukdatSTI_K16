@@ -1,4 +1,5 @@
 #include"mapOperate.h"
+#include"buff.h"
 #include<time.h>
 #include<math.h>
 
@@ -73,12 +74,14 @@ void inspectTile(int tile, TabInt teleporterIn, TabInt teleporterOut) {
 void teleport(Player *P, TabInt teleporterIn, TabInt teleporterOut) {
     IdxType i = GetIdx(teleporterIn, P->position);
     if (i != IdxUndef) {
-        int teleportPos = GetElmt(teleporterOut, i);
+        int teleportPos;
         if (!P->buff[1]) {
+            teleportPos = GetElmt(teleporterOut, i);
             printf("Terjadi teleportasi ke %d\n", teleportPos);
             P->position = teleportPos;
         } else {
-            printf("Akan terjadi teleportasi menuju ke %d, ikuti teleporter ini? (y/n)\n", teleportPos);
+            teleportPos = GetElmt(teleporterOut, i);
+            printf("Akan terjadi teleportasi menuju ke %d, tetap ikuti teleporter ini? (y/n)\n", teleportPos);
             char opt;
             printf("> ");
             scanf("%s", &opt);
@@ -88,10 +91,12 @@ void teleport(Player *P, TabInt teleporterIn, TabInt teleporterOut) {
                 scanf("%s", &opt);
             }
             if (opt == 'y') {
+                teleportPos = GetElmt(teleporterOut, i);
                 printf("Terjadi teleportasi ke %d\n", teleportPos);
                 P->position = teleportPos;
             } else {
-                printf("Tidak terjadi teleportasi\n");
+                printf("Tidak terjadi teleportasi, Imunitas Teleport digunakan\n");
+                deactivateBuff(P, 1);
             }
         }
     } else {

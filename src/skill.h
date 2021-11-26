@@ -58,7 +58,7 @@ void SkillMesinWaktu (Player *P2);
 
 void SkillBalingBalingJambu (Player *P2);
 
-void AddSkill(Player *P);
+void AddSkill(Player *P, int offSet);
 
 void SKILL(Player *P1, Player *P2);
 /* Menampilkan daftar skill yang dimiliki dan menanyakan apakah pemain ingin menggunakan suatu skill. */

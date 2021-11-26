@@ -9,7 +9,7 @@
 #ifndef READCONFIG_H
 #define READCONFIG_H
 
-void readConfig(const char *filepath, TabChar *map, int *maxRoll, int *TeleporterCount, TabInt *TeleportIn, TabInt *TeleportOut);
+void readConfig(char *filepath, TabChar *map, int *maxRoll, int *TeleporterCount, TabInt *TeleportIn, TabInt *TeleportOut);
 /*
 Membaca file konfigurasi dengan format .txt untuk digunakan dalam setup game Mobitangga
 */

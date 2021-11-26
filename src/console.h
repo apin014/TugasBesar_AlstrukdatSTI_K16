@@ -9,7 +9,6 @@
 extern int gameStatus, maxRoll, teleporterCount;
 extern TabChar map;
 extern TabInt tIn, tOut;
-extern boolean gameFinished;
 extern Player p1, p2;
 
 void menu();
