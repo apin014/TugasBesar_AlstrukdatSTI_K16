@@ -18,12 +18,13 @@ void menu() {
 }
 
 void newGame() {
-    char filePath[255];
     MakeEmptyChar(&map);
     MakeEmpty(&tIn); MakeEmpty(&tOut);
     printf("---------------------------\nInput config file path: ");
     STARTKATA();
+    char *filePath = (char*) malloc (sizeof(char) * CKata.Length);
     KataToString(CKata, filePath);
+    printf("%s\n", filePath);
     readConfig(filePath, &map, &maxRoll, &teleporterCount, &tIn, &tOut);
     NewPlayer(&p1); NewPlayer(&p2);
     printf("---------------------------\nPlayer 1 name> ");
@@ -50,6 +51,7 @@ void newGame() {
         printf(" %d ", GetElmt(tOut, i));
     }
     printf("]\n");
+    free(filePath);
 }
 
 void chooseMode(int *spec) {

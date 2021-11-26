@@ -58,4 +58,10 @@ void KataToString (Kata K, char *S) {
     {
         S[i-1] = K.TabKata[i];
     }
+    for (int i = K.Length; i < strlen(S); i++) 
+    {
+        if (S[i] != '\0') {
+            S[i] = '\0';
+        }
+    }
 }

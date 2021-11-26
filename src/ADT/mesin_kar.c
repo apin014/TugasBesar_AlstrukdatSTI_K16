@@ -20,6 +20,8 @@ void STARTFILE (char *filename) {
     pita = fopen(filename, "r");
     if (pita != NULL) {
         ADV();
+    } else {
+        printf("PATH TO FILE DOES NOT EXIST\n");
     }
 }
 
