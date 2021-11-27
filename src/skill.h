@@ -54,9 +54,9 @@ void SkillSenterPengecilHoki (Player *P);
 void SkillMesinPenukarPosisi (Player *P1, Player *P2);
 /* Menukar posisi dengan pemain lain. */
 
-void SkillMesinWaktu (Player *P2);
+void SkillMesinWaktu (Player *P1, Player *P2, boolean *isUsed);
 
-void SkillBalingBalingJambu (Player *P2);
+void SkillBalingBalingJambu (Player *P1, Player *P2, boolean *isUsed);
 
 void AddSkill(Player *P, int offSet);
 

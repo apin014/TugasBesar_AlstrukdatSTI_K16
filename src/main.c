@@ -24,13 +24,15 @@ int main() {
         newGame();
         play(&sP1, &sP2, &p1, &p2);
         if (p1.position == NbElmtChar(map)) {
-            printf("%s memenangkan permainan!\n", PLAYER(&p1));
+            printf("%s telah mencapai petak terakhir lebih dulu,\n%smemenangkan permainan!\n", PLAYER(&p1), PLAYER(&p1));
+            printf("Peringkat:\n1. %s\n2. %s\n", PLAYER(&p1), PLAYER(&p2));
         }
         if (p2.position == NbElmtChar(map)) {
-            printf("%s memenangkan permainan!\n", PLAYER(&p2));
+            printf("%s telah mencapai petak terakhir lebih dulu,\n%smemenangkan permainan!\n", PLAYER(&p2), PLAYER(&p2));
+            printf("Peringkat:\n1. %s\n2. %s\n", PLAYER(&p2), PLAYER(&p1));
         }
     } else {
-        printf("Game exited\n");
+        printf("Keluar dari game\n");
     }
 
     return 0;

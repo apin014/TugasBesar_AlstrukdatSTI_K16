@@ -107,7 +107,10 @@ void play(State *SP1, State *SP2, Player *P1, Player *P2) {
                 endTurn = true;
             }
         }
-        if (P1->position == NbElmtChar(map)) {
+        if (P1->position == NbElmtChar(map) || P2->position == NbElmtChar(map)) {
+            if (P1->position == NbElmtChar(map) && P2->position == NbElmtChar(map)) {
+                P1->position = 1;
+            }
             finished = true;
             break;
         }
@@ -126,9 +129,12 @@ void play(State *SP1, State *SP2, Player *P1, Player *P2) {
             }
             endTurn = true;
         }
-        if (P2->position == NbElmtChar(map)) {
-                finished = true;
-                break;
+        if (P1->position == NbElmtChar(map) || P2->position == NbElmtChar(map)) {
+            if (P1->position == NbElmtChar(map) && P2->position == NbElmtChar(map)) {
+                P2->position = 1;
+            }
+            finished = true;
+            break;
         }
     }
 }

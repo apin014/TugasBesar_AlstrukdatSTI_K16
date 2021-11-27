@@ -2,6 +2,7 @@
 #include <string.h>
 #include <time.h>
 #include "console.h"
+#include "mapOperate.h"
 #include "buff.h"
 
 /*
@@ -109,6 +110,40 @@ void SkillMesinPenukarPosisi (Player *P1, Player *P2){
     //fungsi tidak memicu teleporter
 }
 
+void SkillMesinWaktu (Player *P1, Player *P2, boolean *isUsed) {
+    printf("%s memakai skill Mesin Waktu\n", PLAYER(P1));
+    srand(time(NULL) - time(NULL)/maxRoll);
+    unsigned int seed = (unsigned) rand();
+    srand(seed);
+    int moveVal = (rand() % maxRoll) + 1;
+    if (GetElmtChar(map, P2->position-moveVal) == '#' || (P2->position - moveVal) < 1) {
+        printf("Tidak bisa menggerakkan lawan ke petak terlarang atau ke luar map, Mesin Waktu gagal digunakan\n");
+        *isUsed = false;
+    } else {
+        P2->position -= moveVal;
+        printf("%s bergerak mundur ke ke petak %d", PLAYER(P2), P2->position);
+        teleport(P2, tIn, tOut);
+        *isUsed = true;
+    }
+}
+
+void SkillBalingBalingJambu (Player *P1, Player *P2, boolean *isUsed) {
+    printf("%s memakai skill Baling-Baling Jambu\n", PLAYER(P1));
+    srand(time(NULL) - time(NULL)/maxRoll);
+    unsigned int seed = (unsigned) rand();
+    srand(seed);
+    int moveVal = (rand() % maxRoll) + 1;
+    if (GetElmtChar(map, P2->position+moveVal) == '#' || (P2->position + moveVal) < 1) {
+        printf("Tidak bisa menggerakkan lawan ke petak terlarang atau ke luar map, Baling-Baling Jambu gagal digunakan\n");
+        *isUsed = false;
+    } else {
+        P2->position += moveVal;
+        printf("%s bergerak maju ke ke petak %d", PLAYER(P2), P2->position);
+        teleport(P2, tIn, tOut);
+        *isUsed = true;
+    }
+}
+
 void AddSkill(Player *P, int offSet)
 {
     int x;
@@ -142,8 +177,6 @@ void SKILL(Player *P1, Player *P2)
             } else {
                 UseSkill2(P1, P2, input);
             }
-            RemoveSkill(P1, input);
-            // printf("%c membuang skill %c", P1->name, skillNames[SearchValue(P1->skill, input)]);
         }
         else if (input < 0){
             printf("%s membuang skill %s\n", P1->name, skillNames[SearchValue(P1->skill, abs(input))]);
@@ -173,22 +206,29 @@ void UseSkill1(Player *P, int input)
     {
         SkillSenterPengecilHoki(P);
     }
+    RemoveSkill(P, input);
 }
 
 void UseSkill2(Player *P1, Player *P2, int input) {
+    boolean skillUsed;
     if (SearchValue(P1->skill, input) == 5)  
     {
-        SkillMesinPenukarPosisi(P1, P2);  
+        SkillMesinPenukarPosisi(P1, P2);
+        RemoveSkill(P1, input);
     }
     else if (SearchValue(P1->skill, input) == 6)  
     {
-        printf("%s memakai skill Mesin Waktu\n", PLAYER(P1));
-        //Run Skill Function
+        SkillMesinWaktu(P1, P2, &skillUsed);
+        if (skillUsed) {
+            RemoveSkill(P1, input);
+        }
     }
     else if (SearchValue(P1->skill, input) == 7) 
     {
-        printf("%s memakai skill Baling Baling Jambu\n", PLAYER(P1));
-        //Run Skill Function
+        SkillBalingBalingJambu(P1, P2, &skillUsed);
+        if (skillUsed) {
+            RemoveSkill(P1, input);
+        }
     }
 }
 
