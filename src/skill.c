@@ -133,7 +133,7 @@ void SkillBalingBalingJambu (Player *P1, Player *P2, boolean *isUsed) {
     unsigned int seed = (unsigned) rand();
     srand(seed);
     int moveVal = (rand() % maxRoll) + 1;
-    if (GetElmtChar(map, P2->position+moveVal) == '#' || (P2->position + moveVal) < 1) {
+    if (GetElmtChar(map, P2->position+moveVal) == '#' || (P2->position + moveVal) > NbElmtChar(map)) {
         printf("Tidak bisa menggerakkan lawan ke petak terlarang atau ke luar map, Baling-Baling Jambu gagal digunakan\n");
         *isUsed = false;
     } else {
