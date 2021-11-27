@@ -54,6 +54,7 @@ void newGame() {
         printf(" %d ", GetElmt(tOut, i));
     }
     printf("]\n");
+    printf("---------------------------------------------------------------------------------\n");
 }
 
 void chooseMode(int *spec) {

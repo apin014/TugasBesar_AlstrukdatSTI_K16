@@ -146,8 +146,8 @@ void SKILL(Player *P1, Player *P2)
             // printf("%c membuang skill %c", P1->name, skillNames[SearchValue(P1->skill, input)]);
         }
         else if (input < 0){
+            printf("%s membuang skill %s\n", P1->name, skillNames[SearchValue(P1->skill, abs(input))]);
             RemoveSkill(P1, input);
-            printf("%s membuang skill %s.\n", P1->name, skillNames[SearchValue(P1->skill, input)]);
         }
         else {
             printf("");
