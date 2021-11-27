@@ -141,7 +141,7 @@ void playerTurn(Player *PPrime, Player *PSec, boolean *undoSignal) {
     }
     AddSkill(PPrime, 0);
     commands1(PPrime, PSec, undoSignal);
-    if (!undoSignal) {
+    if (!(*undoSignal)) {
         commands2(PPrime, PSec, undoSignal);
     }
 }
@@ -151,29 +151,35 @@ void undo(State *SP1, State *SP2, Player *P1, Player *P2) {
     Player pDump;
     PopPlayer(SP1, &pDump);
     PopPlayer(SP2, &pDump);
-    if (!IsStateEmpty(*SP1) && !IsStateEmpty(*SP2))
+    if (!IsStateEmpty(*SP1) || !IsStateEmpty(*SP2))
     {
         char opt2;
         printf("Lakukan UNDO lagi? (Masukkan 'y/Y' untuk konfirmasi)\n");
         printf("> ");
         scanf("%c", &opt2);
-        while ((opt2 == 'y' || opt2 == 'Y') && (!IsStateEmpty(*SP1) || !IsStateEmpty(*SP2)))
+        while (opt2 == 'y' || opt2 == 'Y')
         {
             PopPlayer(SP1, &pDump);
             PopPlayer(SP2, &pDump);
+            if (IsStateEmpty(*SP1) && IsStateEmpty(*SP2)) {
+                break;
+            }
             printf("Lakukan UNDO lagi? (Masukkan 'y/Y' untuk konfirmasi)\n");
             printf("> ");
             scanf("%c", &opt2);
         }
     }
-    if (IsStateEmpty(*SP1)) {
-        printf("");
-        NewPlayer(P1);
-    } else if (IsStateEmpty(*SP2)){
-        printf("");
-        NewPlayer(P2);
-    } else {
+    if (!IsStateEmpty(*SP1) && !IsStateEmpty(*SP2)) {
         *P1 = InfoTop(*SP1);
         *P2 = InfoTop(*SP2);
+    } else {
+        if (IsStateEmpty(*SP1)) {
+            printf("");
+            NewPlayer(P1);
+        }
+        if (IsStateEmpty(*SP2)){
+            printf("");
+            NewPlayer(P2);
+        }
     }
 }

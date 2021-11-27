@@ -22,11 +22,16 @@ boolean IsStateFull (State S)
 
 void PushPlayer (State * S, Player X)
 {
-    Top(*S)++;
-    InfoTop(*S) = X;
+    if (!IsStateFull(*S)) {
+        Top(*S)++;
+        InfoTop(*S) = X;
+    }
 }
 
 void PopPlayer (State * S, Player* X)
 {
-    Top(*S)--;
+    if (!IsStateEmpty(*S)) {
+        *X = InfoTop(*S);
+        Top(*S)--;
+    }
 }
