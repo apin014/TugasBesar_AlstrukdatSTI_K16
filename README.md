@@ -15,18 +15,20 @@ Permainan **"Mobitangga"** adalah *digital board game* yang mengandung unsur per
 - Jumlah *teleporter* yang berada pada *map*
 - Pintu masuk dan pintu keluar setiap *teleporter*
 <br />
-<br />
 
 ## Cara Kompilasi dan Menjalankan Program
 *Clone* repositori ini
+```
     git clone https://github.com/apin014/TugasBesar_AlstrukdatSTI_K16
     cd TugasBesar_AlstrukdatSTI_K16
     cd bin
-<br />
+```
 <br />
 
 Jalankan *batch file* **compile_mobitangga.bat** atau kompilasi manual
+```
     gcc -o Mobitangga ../src/main.c ../src/Console/console.c ../src/ConfigReader/readConfig.c ../src/MapOperating/mapOperate.c ../src/GameRound/gameRound.c ../src/Buff/buff.c ../src/Skill/skill.c ../src/ADT/mesin_kar.c ../src/ADT/mesin_kata.c ../src/ADT/array.c ../src/ADT/arrayChar.c ../src/ADT/listlinier.c ../src/ADT/player.c ../src/ADT/state.c
+```
 <br />
 
 *Run* file executable **Mobitangga.exe**, kemudian setelah masuk ke dalam program pastikan bahwa setiap command yang diinput dalam program merupakan **Uppercase** dan tanpa *whitespace*.
