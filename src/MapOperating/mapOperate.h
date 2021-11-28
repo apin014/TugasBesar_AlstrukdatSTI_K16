@@ -9,7 +9,7 @@
 #define MAPOPERATE_H
 
 void roll(Player *PPrime, int maxRoll, unsigned int seedOffSet);
-/* Fungsi untuk melakukan roll dan bergerak dari satu posisi ke posisi lain */
+/* Prosedur untuk melakukan roll dan bergerak dari satu posisi ke posisi lain */
 
 void printMap(TabChar map, int playerPosition);
 /* Salah satu prosedur command untuk menampilkan posisi pemain */

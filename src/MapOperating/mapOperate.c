@@ -77,7 +77,7 @@ void teleport(Player *P, TabInt teleporterIn, TabInt teleporterOut) {
         int teleportPos;
         if (!P->buff[1]) {
             teleportPos = GetElmt(teleporterOut, i);
-            printf("Terjadi teleportasi ke %d\n", teleportPos);
+            printf("%s teleportasi ke %d\n", PLAYER(P), teleportPos);
             P->position = teleportPos;
         } else {
             teleportPos = GetElmt(teleporterOut, i);
@@ -92,7 +92,7 @@ void teleport(Player *P, TabInt teleporterIn, TabInt teleporterOut) {
             }
             if (opt == 'y') {
                 teleportPos = GetElmt(teleporterOut, i);
-                printf("Terjadi teleportasi ke %d\n", teleportPos);
+                printf("%s teleportasi ke %d\n", PLAYER(P), teleportPos);
                 P->position = teleportPos;
             } else {
                 printf("Tidak terjadi teleportasi, Imunitas Teleport digunakan\n");

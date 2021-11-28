@@ -11,6 +11,7 @@ char buffNames[5][32] = {
                             "Senter Pembesar Hoki",
                             "Senter Pengecil Hoki"
                         };
+/* Daftar nama nama buff */
 
 void BuffImunitasTeleport (Player *P);
 /* Mengaktifkan buff Imunitas Teleport */

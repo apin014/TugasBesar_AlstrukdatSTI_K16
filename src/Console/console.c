@@ -36,10 +36,10 @@ void newGame() {
     STARTKATA();
     KataToString(CKata, p2.name);
     CreateEmptyState(&sP1); CreateEmptyState(&sP2);
-    printf("Permainan dimulai dengan 2 orang pemain\n");
-    printf("Mapsize: %d\n", NbElmtChar(map));
+    printf("---------------------------\nPermainan dimulai dengan 2 orang pemain\n");
+    printf("Ukuran map: %d\n", NbElmtChar(map));
     printf("Max roll: %d\n", maxRoll);
-    printf("Teleporter count: %d\n", teleporterCount);
+    printf("Jumlah Teleporter: %d\n", teleporterCount);
     printf("Pintu masuk teleporter: \n");
     printf("[");
     for (int i = 1; i <= NbEl(tIn); i++)

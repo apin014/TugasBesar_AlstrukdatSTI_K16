@@ -84,7 +84,6 @@ void SkillSenterPembesarHoki (Player *P){
     else {
         printf("%s memakai skill Senter Pembesar Hoki\n", PLAYER(P));
         BuffSenterPembesarHoki(P);
-        // printf("Dadu akan mengeluarkan angka %d sampai %d.\n", (floor(maxRoll/2)), (maxRoll + 1 - floor(maxRoll/2)));
     }
 }
 
@@ -95,7 +94,6 @@ void SkillSenterPengecilHoki (Player *P){
     else {
         printf("%s memakai skill Senter Pengecil Hoki.\n", PLAYER(P));
         BuffSenterPengecilHoki(P);
-        // printf("Dadu akan mengeluarkan angka 1 sampai %d.\n", (floor(maxRoll/2)));
     }    
 }
 
@@ -268,7 +266,7 @@ int SearchValue(List L, int X)
 
 void PrintSkill (Player P){
     if (!IsListEmpty(P.skill)){
-        printf ("Kamu memiliki skill :\n");
+        printf ("%s memiliki skill :\n", PLAYER(&P));
         int idx = 1;
         address loc;
         loc = First(P.skill);
@@ -279,6 +277,6 @@ void PrintSkill (Player P){
             idx ++;
         }
     } else {
-        printf("Tidak memiliki skill\n");
+        printf("%s Tidak memiliki skill\n", PLAYER(&P));
     }
 }
