@@ -17,7 +17,7 @@ Permainan **"Mobitangga"** adalah *digital board game* yang mengandung unsur per
 <br />
 
 ## Cara Kompilasi dan Menjalankan Program
-*Clone* repositori ini
+*Clone* repositori ini dan masuk ke direktori repositori lokal yang telah dibuat, kemudian masuk ke folder bin
 ```
     git clone https://github.com/apin014/TugasBesar_AlstrukdatSTI_K16
     cd TugasBesar_AlstrukdatSTI_K16
