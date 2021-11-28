@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include"ADT/boolean.h"
-#include"ADT/listlinier.h"
-#include"ADT/player.h"
+#include"../ADT/boolean.h"
+#include"../ADT/listlinier.h"
+#include"../ADT/player.h"
 
 
 #ifndef skill_h
@@ -41,6 +41,7 @@ int RandomSkill(int number);
 /* randomized skill dalam representasi angka */
 
 void SkillPintuGaKeManaMana (Player *P);
+/* Mengaktifkan buff imunitas teleportasi */
 
 void SkillCerminPengganda (Player *P);
 /* Gunakan skill ini dan mendapatkan dua buah skill baru. */
@@ -55,10 +56,13 @@ void SkillMesinPenukarPosisi (Player *P1, Player *P2);
 /* Menukar posisi dengan pemain lain. */
 
 void SkillMesinWaktu (Player *P1, Player *P2, boolean *isUsed);
+/* Menggerakkan pemain lawan mundur 1 hingga MaxRoll langkah */
 
 void SkillBalingBalingJambu (Player *P1, Player *P2, boolean *isUsed);
+/* Menggerakkan pemain lawan maju 1 hingga MaxRoll langkah */
 
 void AddSkill(Player *P, int offSet);
+/* Menambahkan skill ke dalam list skill milik player */
 
 void SKILL(Player *P1, Player *P2);
 /* Menampilkan daftar skill yang dimiliki dan menanyakan apakah pemain ingin menggunakan suatu skill. */

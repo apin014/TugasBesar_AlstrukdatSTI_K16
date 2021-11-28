@@ -1,8 +1,8 @@
 #ifndef buff_H
 #define buff_H
 
-#include"ADT/boolean.h"
-#include"ADT/player.h"
+#include"../ADT/boolean.h"
+#include"../ADT/player.h"
 
 char buffNames[5][32] = {
                             " ",

@@ -1,9 +1,9 @@
 #include<stdlib.h>
 #include<stdio.h>
-#include"ADT/boolean.h"
-#include"ADT/arrayChar.h"
-#include"ADT/array.h"
-#include"ADT/player.h"
+#include"../ADT/boolean.h"
+#include"../ADT/arrayChar.h"
+#include"../ADT/array.h"
+#include"../ADT/player.h"
 
 #ifndef MAPOPERATE_H
 #define MAPOPERATE_H

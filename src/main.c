@@ -1,9 +1,9 @@
-#include"console.c"
-#include"readConfig.c"
-#include"mapOperate.c"
-#include"gameRound.c"
-#include"buff.c"
-#include"skill.c"
+#include"Console/console.c"
+#include"ConfigReader/readConfig.c"
+#include"MapOperating/mapOperate.c"
+#include"GameRound/gameRound.c"
+#include"Buff/buff.c"
+#include"Skill/skill.c"
 #include"ADT/boolean.h"
 #include"ADT/mesin_kar.c"
 #include"ADT/mesin_kata.c"
@@ -33,6 +33,12 @@ int main() {
         }
     } else {
         printf("Keluar dari game\n");
+    }
+    printf("Insert (x/X) to continue\n");
+    char c = getchar();
+    while (c != 88 && c != 120)
+    {
+        c = getchar();
     }
 
     return 0;

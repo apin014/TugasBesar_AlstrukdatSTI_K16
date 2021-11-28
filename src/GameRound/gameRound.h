@@ -1,6 +1,6 @@
-#include"ADT/player.h"
-#include"ADT/state.h"
-#include"ADT/boolean.h"
+#include"../ADT/player.h"
+#include"../ADT/state.h"
+#include"../ADT/boolean.h"
 #include<stdio.h>
 #include<stdlib.h>
 

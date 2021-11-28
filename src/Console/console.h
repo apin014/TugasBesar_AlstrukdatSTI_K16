@@ -1,11 +1,11 @@
 #ifndef CONSOLE_H
 #define CONSOLE_H
 
-#include"ADT/boolean.h"
-#include"ADT/player.h"
-#include"ADT/arrayChar.h"
-#include"ADT/array.h"
-#include"ADT/state.h"
+#include"../ADT/boolean.h"
+#include"../ADT/player.h"
+#include"../ADT/arrayChar.h"
+#include"../ADT/array.h"
+#include"../ADT/state.h"
 
 extern int gameStatus, maxRoll, teleporterCount;
 extern TabChar map;

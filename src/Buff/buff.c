@@ -1,5 +1,5 @@
 #include "buff.h"
-#include "ADT/player.h"
+#include "../ADT/player.h"
 
 void BuffImunitasTeleport (Player *P){
 	P->buff[1] = true;

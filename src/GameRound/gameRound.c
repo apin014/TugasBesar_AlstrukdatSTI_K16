@@ -1,12 +1,12 @@
-#include"gameRound.h"
-#include"readConfig.h"
-#include"ADT/mesin_kar.h"
-#include"ADT/mesin_kata.h"
-#include"ADT/arrayChar.h"
-#include"console.h"
-#include"mapOperate.h"
-#include"skill.h"
-#include"buff.h"
+#include"../GameRound/gameRound.h"
+#include"../ConfigReader/readConfig.h"
+#include"../ADT/mesin_kar.h"
+#include"../ADT/mesin_kata.h"
+#include"../ADT/arrayChar.h"
+#include"../Console/console.h"
+#include"../MapOperating/mapOperate.h"
+#include"../Skill/skill.h"
+#include"../Buff/buff.h"
 
 void commands1(Player *PPrime, Player *PSec, boolean *undoSignal) {
     boolean hasRolled;
@@ -140,6 +140,7 @@ void play(State *SP1, State *SP2, Player *P1, Player *P2) {
 }
 
 void playerTurn(Player *PPrime, Player *PSec, boolean *undoSignal) {
+    printf("---------------------------\n");
     printf("Sekarang adalah giliran %s\n", PLAYER(PPrime));
     for (int i = 2; i <= 4; i++)
     {

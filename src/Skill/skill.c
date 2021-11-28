@@ -1,9 +1,9 @@
-#include "skill.h"
+#include "../Skill/skill.h"
 #include <string.h>
 #include <time.h>
-#include "console.h"
-#include "mapOperate.h"
-#include "buff.h"
+#include "../Console/console.h"
+#include "../MapOperating/mapOperate.h"
+#include "../Buff/buff.h"
 
 /*
 SKILL

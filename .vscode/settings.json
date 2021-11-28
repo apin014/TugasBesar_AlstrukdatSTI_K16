@@ -1,3 +1,14 @@
 {
-    "C_Cpp.errorSquiggles": "Disabled"
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "mesin_kata.h": "c",
+        "readconfig.h": "c",
+        "string.h": "c",
+        "mapoperate.h": "c",
+        "arraychar.h": "c",
+        "boolean.h": "c",
+        "array.h": "c",
+        "player.h": "c",
+        "console.h": "c"
+    }
 }

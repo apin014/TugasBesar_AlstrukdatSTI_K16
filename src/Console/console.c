@@ -4,8 +4,8 @@
 #include<math.h>
 #include<time.h>
 #include<string.h>
-#include"readConfig.h"
-#include"mapOperate.h"
+#include"../ConfigReader/readConfig.h"
+#include"../MapOperating/mapOperate.h"
 
 int gameStatus, maxRoll, teleporterCount;
 TabChar map;
@@ -15,7 +15,7 @@ State sP1, sP2;
 
 void menu() {
     printf("---------------------------\n|        MAIN MENU        |\n---------------------------\n");
-    printf("[1] NEW GAME\n---------------------------\n[2] EXIT\n---------------------------\n");
+    printf("[1] NEWGAME\n---------------------------\n[2] EXIT\n---------------------------\n");
 }
 
 void newGame() {
@@ -54,23 +54,19 @@ void newGame() {
         printf(" %d ", GetElmt(tOut, i));
     }
     printf("]\n");
-    printf("---------------------------------------------------------------------------------\n");
 }
 
 void chooseMode(int *spec) {
+    char newGame[] = "NEWGAME";
+    char exit[] = "EXIT";
+    char *mode = (char*) malloc (CKata.Length+1);
     printf("> ");
-    START();
-    switch (CC)
-    {
-    case '1':
+    STARTKATA();
+    KataToString(CKata, mode);
+    if (strcmp(newGame, mode) == 0) {
         *spec = 1;
-        break;
-
-    case '2':
+    } else if (strcmp(exit, mode) == 0) {
         *spec = 2;
-        break;
-
-    default:
-        break;
     }
+    free(mode);
 }
