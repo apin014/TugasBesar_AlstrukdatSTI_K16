@@ -119,7 +119,7 @@ void SkillMesinWaktu (Player *P1, Player *P2, boolean *isUsed) {
         *isUsed = false;
     } else {
         P2->position -= moveVal;
-        printf("%s bergerak mundur ke ke petak %d", PLAYER(P2), P2->position);
+        printf("%s bergerak mundur ke ke petak %d\n", PLAYER(P2), P2->position);
         teleport(P2, tIn, tOut);
         *isUsed = true;
     }
@@ -136,7 +136,7 @@ void SkillBalingBalingJambu (Player *P1, Player *P2, boolean *isUsed) {
         *isUsed = false;
     } else {
         P2->position += moveVal;
-        printf("%s bergerak maju ke ke petak %d", PLAYER(P2), P2->position);
+        printf("%s bergerak maju ke ke petak %d\n", PLAYER(P2), P2->position);
         teleport(P2, tIn, tOut);
         *isUsed = true;
     }
@@ -169,20 +169,25 @@ void SKILL(Player *P1, Player *P2)
         printf("\n");
         printf("Masukkan skill: ");
         scanf(" %d", &input);
-        if (input > 0){
-            if (SearchValue(P1->skill, input) != 5 && SearchValue(P1->skill, input) != 6 && SearchValue(P1->skill, input) != 7) {
-                UseSkill1(P1, input);
-            } else {
-                UseSkill2(P1, P2, input);
+        if (input > NbElmt(P1->skill) || input < NbElmt(P1->skill)*-1) {
+            printf("INVALID\n");
+        } else {
+            if (input > 0){
+                if (SearchValue(P1->skill, input) != 5 && SearchValue(P1->skill, input) != 6 && SearchValue(P1->skill, input) != 7) {
+                    UseSkill1(P1, input);
+                } else {
+                    UseSkill2(P1, P2, input);
+                }
+            }
+            else if (input < 0){
+                printf("%s membuang skill %s\n", P1->name, skillNames[SearchValue(P1->skill, abs(input))]);
+                RemoveSkill(P1, input);
+            }
+            else {
+                printf("");
             }
         }
-        else if (input < 0){
-            printf("%s membuang skill %s\n", P1->name, skillNames[SearchValue(P1->skill, abs(input))]);
-            RemoveSkill(P1, input);
-        }
-        else {
-            printf("");
-        }
+        
     }
 } 
 
