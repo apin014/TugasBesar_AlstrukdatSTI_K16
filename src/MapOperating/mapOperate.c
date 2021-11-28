@@ -1,4 +1,5 @@
-#include"../MapOperating/mapOperate.h"
+#include"mapOperate.h"
+#include"../Console/console.h"
 #include"../Buff/buff.h"
 #include<time.h>
 #include<math.h>

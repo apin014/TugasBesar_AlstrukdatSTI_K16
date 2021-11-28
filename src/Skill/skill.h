@@ -8,7 +8,7 @@
 #ifndef skill_h
 #define skill_h
 
-char skillNames[8][32] = {
+static char skillNames[8][32] = {
                             "Teknologi Gagal",
                             "Pintu Ga Ke Mana-Mana",
                             "Cermin Pengganda",

@@ -1,9 +1,9 @@
 #include<stdio.h>
-#include"ADT/mesin_kar.h"
-#include"ADT/mesin_kata.h"
-#include"ADT/array.h"
-#include"ADT/arrayChar.h"
-#include"console.h"
+#include"../ADT/mesin_kar.h"
+#include"../ADT/mesin_kata.h"
+#include"../ADT/array.h"
+#include"../ADT/arrayChar.h"
+#include"readConfig.h"
 
 int main () {
     char filepath[255];
@@ -13,7 +13,7 @@ int main () {
     TabInt TIn, TOut;
     MakeEmpty(&TIn); MakeEmpty(&TOut);
     printf("Masukkan path file konfigurasi: ");
-    STARTKATA();
+    STARTNAME();
     KataToString(CKata, filepath);
     readConfig(filepath, &map, &maxroll, &TeleporterCount, &TIn, &TOut);
     printf("Mapsize: %d\n", NbElmtChar(map));
@@ -27,14 +27,14 @@ int main () {
     printf("Teleporter count: %d\n", TeleporterCount);
     printf("Pintu masuk teleporter: \n");
     printf("[");
-    for (int i = 1; i <= NbElmt(TIn); i++)
+    for (int i = 1; i <= NbEl(TIn); i++)
     {
         printf(" %d ", GetElmt(TIn, i));
     }
     printf("]\n");
     printf("Pintu keluar teleporter: \n");
     printf("[");
-    for (int i = 1; i <= NbElmt(TOut); i++)
+    for (int i = 1; i <= NbEl(TOut); i++)
     {
         printf(" %d ", GetElmt(TOut, i));
     }

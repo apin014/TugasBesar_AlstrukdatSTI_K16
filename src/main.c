@@ -1,20 +1,30 @@
-#include"Console/console.c"
-#include"ConfigReader/readConfig.c"
-#include"MapOperating/mapOperate.c"
-#include"GameRound/gameRound.c"
-#include"Buff/buff.c"
-#include"Skill/skill.c"
+#include"Console/console.h"
+#include"ConfigReader/readConfig.h"
+#include"MapOperating/mapOperate.h"
+#include"GameRound/gameRound.h"
+#include"Buff/buff.h"
+#include"Skill/skill.h"
 #include"ADT/boolean.h"
-#include"ADT/mesin_kar.c"
-#include"ADT/mesin_kata.c"
-#include"ADT/array.c"
-#include"ADT/arrayChar.c"
-#include"ADT/listlinier.c"
-#include"ADT/player.c"
-#include"ADT/state.c"
+#include"ADT/mesin_kar.h"
+#include"ADT/mesin_kata.h"
+#include"ADT/array.h"
+#include"ADT/arrayChar.h"
+#include"ADT/listlinier.h"
+#include"ADT/player.h"
+#include"ADT/state.h"
 #include<stdio.h>
+#include<stdlib.h>
+
+void welcome(FILE *fp);
 
 int main() {
+    char *welcomeText = "..\\data\\welcome_text.txt";
+    FILE *fp = NULL;
+    fp = fopen(welcomeText, "r");
+    if (fp != NULL) {
+        welcome(fp);
+    }
+
     do
     {
         menu();
@@ -42,4 +52,11 @@ int main() {
     }
 
     return 0;
+}
+
+void welcome(FILE *fp) {
+    char read_string[255];
+    while(fgets(read_string, sizeof(read_string), fp) != NULL) {
+        printf("%s",read_string);
+    }
 }

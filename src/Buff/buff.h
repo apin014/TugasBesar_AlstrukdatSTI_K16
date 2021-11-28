@@ -1,10 +1,12 @@
-#ifndef buff_H
-#define buff_H
-
+#include <stdlib.h>
+#include <stdio.h>
 #include"../ADT/boolean.h"
 #include"../ADT/player.h"
 
-char buffNames[5][32] = {
+#ifndef buff_H
+#define buff_H
+
+static char buffNames[5][32] = {
                             " ",
                             "Imunitas Teleport",
                             "Cermin Pengganda",

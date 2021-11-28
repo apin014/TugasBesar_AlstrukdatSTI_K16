@@ -1,4 +1,4 @@
-#include"../GameRound/gameRound.h"
+#include"gameRound.h"
 #include"../ConfigReader/readConfig.h"
 #include"../ADT/mesin_kar.h"
 #include"../ADT/mesin_kata.h"
@@ -7,6 +7,7 @@
 #include"../MapOperating/mapOperate.h"
 #include"../Skill/skill.h"
 #include"../Buff/buff.h"
+#include<string.h>
 
 void commands1(Player *PPrime, Player *PSec, boolean *undoSignal) {
     boolean hasRolled;

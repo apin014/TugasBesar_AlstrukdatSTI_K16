@@ -5,7 +5,6 @@
 #include<time.h>
 #include<string.h>
 #include"../ConfigReader/readConfig.h"
-#include"../MapOperating/mapOperate.h"
 
 int gameStatus, maxRoll, teleporterCount;
 TabChar map;
@@ -22,7 +21,7 @@ void newGame() {
     MakeEmptyChar(&map);
     MakeEmpty(&tIn); MakeEmpty(&tOut);
     printf("---------------------------\nInput config file path: ");
-    STARTDIRECTORYNAME();
+    STARTNAME();
     char *filePath = (char*) malloc (sizeof(char) * CKata.Length+1);
     KataToString(CKata, filePath);
     printf("%s\n", filePath);
@@ -30,10 +29,10 @@ void newGame() {
     free(filePath);
     NewPlayer(&p1); NewPlayer(&p2);
     printf("---------------------------\nPlayer 1 name> ");
-    STARTKATA();
+    STARTNAME();
     KataToString(CKata, p1.name);
     printf("---------------------------\nPlayer 2 name> ");
-    STARTKATA();
+    STARTNAME();
     KataToString(CKata, p2.name);
     CreateEmptyState(&sP1); CreateEmptyState(&sP2);
     printf("---------------------------\nPermainan dimulai dengan 2 orang pemain\n");

@@ -1,5 +1,6 @@
 #include"mesin_kata.h"
 #include<stdio.h>
+#include<string.h>
 
 boolean EndKata;
 Kata CKata;
@@ -44,18 +45,18 @@ void STARTKATAFILE (char *filename) {
     }
 }
 
-void STARTDIRECTORYNAME () {
+void STARTNAME () {
     START();
     IgnoreBlank();
     if (CC == MARK) {
         EndKata = true;
     } else {
         EndKata = false;
-        SalinDirName();
+        SalinName();
     }
 }
 
-void SalinDirName () {
+void SalinName () {
     int i = 1;
     while ((CC != MARK) && (CC != NEWLINE))
     {

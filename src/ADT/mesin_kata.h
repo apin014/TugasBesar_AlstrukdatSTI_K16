@@ -30,9 +30,9 @@ void ADVKATA();
 
 void STARTKATAFILE(char *filename);
 
-void STARTDIRECTORYNAME();
+void STARTNAME();
 
-void SalinDirName();
+void SalinName();
 
 void KataToString (Kata K, char *S);
 
